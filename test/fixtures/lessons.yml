@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_time: 2016-01-27 18:33:13
+  connection_id: 
+
+two:
+  date_time: 2016-01-27 18:33:13
+  connection_id: 
