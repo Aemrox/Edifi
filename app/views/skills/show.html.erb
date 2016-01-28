@@ -1,0 +1,15 @@
+<h1><%= @skill.name %></h1>
+<p><%= @skill.description %></p>
+
+<% if @skill.teachers %>
+  <p>Teachers with this skill:</p>
+  <ul>
+    <% @skill.teachers.each do |teacher| %>
+    <li><%= teacher.user_name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no teachers with this skill yet.</p>
+<% end %>
+
+
