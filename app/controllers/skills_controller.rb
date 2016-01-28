@@ -7,7 +7,7 @@ class SkillsController < ApplicationController
   end
 
   def index
-
+    @skills = Skill.all
   end
 
   def show

@@ -1,0 +1,12 @@
+
+
+
+
+<% if current_user.teacher? %>
+  <%= render "teacher_index" %>
+  <%= render "user_index" %>  
+<% else %>
+  <%= render "user_index" %>  
+<% end %>
+   
+

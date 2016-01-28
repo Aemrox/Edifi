@@ -13,7 +13,10 @@ class UsersController < ApplicationController
       render :new, notice: "failure!"
     end
   end
-
+  
+  def show
+    
+  end
 
 
   private
