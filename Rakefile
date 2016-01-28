@@ -3,10 +3,12 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-desc "destroy all users in db"
-task :clear_users! => :environment do
+desc "destroy all users, subjects and skills in db"
+task :clear_core_data! => :environment do
   puts "starting to dump yo data"
   User.destroy_all
+  Subject.destroy_all
+  Skill.destroy_all
   puts "dumped yo data"
 end
 
