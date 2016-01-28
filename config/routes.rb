@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :users, only: [:new, :create]
+  resources :subjects, only: [:new, :create, :index, :show]
+  resources :skills, only: [:new, :create, :index, :show]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
