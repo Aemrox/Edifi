@@ -4,7 +4,6 @@ class CreateSkills < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.belongs_to :subject, index: true #add foreign key constraints later
-      t.belongs_to :teacher, index: true
 
       t.timestamps null: false
     end
