@@ -1,5 +1,5 @@
 class SkillsController < ApplicationController
-  def new 
+  def new
     @skill = Skill.new
   end
 
@@ -8,20 +8,12 @@ class SkillsController < ApplicationController
     @skill.save
     redirect_to skill
   end
-
-<<<<<<< HEAD
-=======
-
->>>>>>> userhomepage
+  
   def index
     @skills = Skill.all
   end
 
   def show
-<<<<<<< HEAD
     @skill = Skill.find(params[:id])
-=======
-   @skill = Skill.find(params[:id])
->>>>>>> userhomepage
   end
 end
