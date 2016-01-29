@@ -14,11 +14,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
 
+  end
+
+  def update
+    binding.pry
+    @user = User.find(params[:id])
+    @user.skills_ids = new_teacher_params["teacher"]["skill_ids"]
+  end
+
+  def teacherize
+    @skill = Skill.new
+    @user = current_user
+  end
 
   private
   def user_params
     params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :bio)
+  end
+
+  def new_teacher_params
+    params.require(:user).permit(:skill_ids => [])
   end
 
 

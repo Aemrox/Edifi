@@ -1,0 +1,19 @@
+<h1> Create a new skill!</h1>
+<div class="skill_form">
+  <%= form_for @skill do |f|%>
+    <div class="skill_name">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="skill_description">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+    <div class="skill_subject">
+      <%= f.collection_check_boxes(:subject_id, Subject.all, :id, :name)%>
+    </div>
+
+    <%= f.submit %>
+
+  <% end %>
+</div>

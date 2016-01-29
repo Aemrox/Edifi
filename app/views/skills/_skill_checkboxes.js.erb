@@ -1,0 +1,21 @@
+var allSkills = [];
+
+function Skill(name, description, subject){
+  this.name = name;
+  this.description = name;
+  this.subject = subject;
+  allSkills.push(this);
+}
+
+Skill.newFromJSON = function (json) {
+  return new Skill(json.name, json.description, json.subject.name);
+};
+
+function checkboxTemplate() {
+  var html = "";
+  allSkills.forEach(function(){
+    html += ""
+  })
+}
+
+$('skills_selector').append(" ")
