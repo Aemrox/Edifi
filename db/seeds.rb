@@ -53,6 +53,6 @@ puts "Quick Books skill added" if quickbooks.save
 ruchi.skills << turbo_tax
 ruchi.skills << quickbooks
 ruchi.save
-
+Skill.reindex
 
 puts "Ending"

@@ -22,15 +22,14 @@ class UsersController < ApplicationController
 
   end
 
-  def update
-    # binding.pry
-    @user = User.find(params[:id])
-    @user.skills_ids = new_teacher_params["teacher"]["skill_ids"]
-  end
-
   def teacherize
     @skill = Skill.new
     @user = current_user
+  end
+
+  def becometeacher
+    current_user.skill_ids = new_teacher_params[:skill_ids]
+    redirect_to homepage_path, notice: "New Skills Added!"
   end
 
   private
