@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/users/teacherize', to: 'users#teacherize'
+  post '/users/becometeacher', to: 'users#becometeacher'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
 
   resources :subjects, only: [:new, :create, :index, :show]
+
+  post '/skillsearch', to: 'skills#search'
+
   resources :skills, only: [:new, :create, :index, :show]
 
 

@@ -5,7 +5,7 @@ class SkillsController < ApplicationController
 
   def create
     skill = current_user.skills.create(skill_params)
-    skill.save
+    Skill.reindex if skill.save
     if params["original_page"].include?("teacherize")
       # binding.pry
       redirect_to '/users/teacherize'
@@ -21,6 +21,13 @@ class SkillsController < ApplicationController
   def show
     @skill = Skill.find(params[:id])
   end
+
+  def search
+    @skills = Skill.search(params[:query]).map {|result| result}
+    @query = params[:query]
+  end
+
+
 
   private
   def skill_params
