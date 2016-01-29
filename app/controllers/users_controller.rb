@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
+    # binding.pry
     @user = User.find(params[:id])
     @user.skills_ids = new_teacher_params["teacher"]["skill_ids"]
   end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :bio)
+    params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :bio, :first_name, :last_name)
   end
 
   def new_teacher_params

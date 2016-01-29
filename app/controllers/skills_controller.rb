@@ -7,7 +7,7 @@ class SkillsController < ApplicationController
     skill = current_user.skills.create(skill_params)
     skill.save
     if params["original_page"].include?("teacherize")
-      binding.pry
+      # binding.pry
       redirect_to '/users/teacherize'
     else
       redirect_to skill
