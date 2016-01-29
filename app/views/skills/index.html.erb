@@ -3,7 +3,6 @@
 <ul>
   <% @skills.each do |skill| %>
    <!--Not showing the skill name. Need to work on that later-->
-    <li><%= puts skill.name %></li>
+    <li><%= link_to skill.name, skill %></li>
   <% end %>
 </ul>
-

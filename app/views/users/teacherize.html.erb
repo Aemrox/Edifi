@@ -4,4 +4,4 @@
   <%= render "skill_selector"%>
 
 <h2 class="new_skill_form">Don't see your skill? add one!</h2>
-  <%= render "skills/form" %>
+  <%= render partial: "skills/form", locals: {return_to: @_request.original_url}%>

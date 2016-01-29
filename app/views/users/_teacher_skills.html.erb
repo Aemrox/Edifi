@@ -1,0 +1,5 @@
+<ul class = "user_skills">
+  <% current_user.skills.each do |skill| %>
+    <li> <%= link_to skill.name, skill %> </li>
+  <% end %>
+</ul>

@@ -41,13 +41,11 @@ ActiveRecord::Schema.define(version: 20160128040539) do
     t.string   "name"
     t.text     "description"
     t.integer  "subject_id"
-    t.integer  "teacher_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
   add_index "skills", ["subject_id"], name: "index_skills_on_subject_id", using: :btree
-  add_index "skills", ["teacher_id"], name: "index_skills_on_teacher_id", using: :btree
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"

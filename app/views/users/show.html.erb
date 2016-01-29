@@ -1,10 +1,20 @@
+<h1> <%= @user.user_name %> </h1>
 
 
-<% if current_user.teacher? %>
-  <%= render "teacher_index" %>
-  <%= render "user_index" %>  
-<% else %>
-  <%= render "user_index" %>  
+<h2> Bio:</h2>
+<p>
+  <% if @user.bio%>
+    <%= @user.bio  %>
+  <% else %>
+     No Bio :(
+  <% end %>
+</p>
+
+<!-- <h3>Classes: </h3>
+  add stuff here eventually --> 
+
+<% if @user.teacher? %>
+  <h3>Skills I Teach:</h3>
+  <%= render "teacher_skills" %>
+  <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
 <% end %>
-   
-

@@ -5,11 +5,9 @@
   <p>Teachers with this skill:</p>
   <ul>
     <% @skill.teachers.each do |teacher| %>
-    <li><%= teacher.user_name %></li>
+    <li><%= link_to teacher.user_name, teacher %></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are no teachers with this skill yet.</p>
 <% end %>
-
-

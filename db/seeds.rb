@@ -37,7 +37,7 @@ final_cut = Skill.new(name: "Final Cut Pro", description: "Edit Movies!")
 final_cut.subject = av
 puts "Final Cut Pro skill added" if final_cut.save
 pro_logic = Skill.new(name: "Pro Logic", description: "Edit Sounds")
-pro_logic.subject = design
+pro_logic.subject = av
 puts "Pro Logic skill added" if pro_logic.save
 adam.skills << final_cut
 adam.skills << pro_logic
@@ -45,10 +45,10 @@ adam.save
 
 #Finance Skills
 turbo_tax = Skill.new(name: "Turbo Tax", description: "Learn to do your")
-turbo_tax.subject = av
+turbo_tax.subject = finance
 puts "Turbo Tax skill added" if turbo_tax.save
 quickbooks = Skill.new(name: "Quick Books", description: "Learn how to balance your checkbook")
-quickbooks.subject = av
+quickbooks.subject = finance
 puts "Quick Books skill added" if quickbooks.save
 ruchi.skills << turbo_tax
 ruchi.skills << quickbooks

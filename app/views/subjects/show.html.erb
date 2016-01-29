@@ -2,7 +2,7 @@
 <p><%= @subject.description %></p>
 
 <% if @subject.skills.length > 0 %>
-  <%= render "skills/index", locals: {skills: @subject.skills} %>
+  <%= render "skills/skill_by_subject", locals: {skills: @subject.skills} %>
 <% else %>
   <p>Nobody's added a skill yet!</p>
 <% end %>

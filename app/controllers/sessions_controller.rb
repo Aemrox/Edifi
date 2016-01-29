@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.authenticate!(params[:user_name], params[:password])
       if user
         session[:user_id] = user.id
-        redirect_to user_path(user.id), notice: "You've been logged in"
+        redirect_to homepage_path, notice: "You've been logged in"
       else
         # @user = User.new
         flash.now[:error] = "Bad username or password"
