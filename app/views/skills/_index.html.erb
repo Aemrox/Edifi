@@ -1,0 +1,6 @@
+<p>Skills in this subject:</p>
+<ul>
+  <% locals[:skills].each do |skill| %>
+    <li><%= link_to "#{skill.name}", skill_path(skill) %></li>
+  <% end %>
+</ul>

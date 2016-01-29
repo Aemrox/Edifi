@@ -1,0 +1,17 @@
+<h1>All Subjects</h1>
+
+
+<% @subjects.each do |subject| %>
+
+ <div>
+  <h2><%= subject.name %></h2>
+  <p><%= subject.description %></p>
+  <% if subject.skills.length > 0 %>
+      <%= render "skills/index", locals: {skills: subject.skills} %>
+  <% else %>
+    <p>Nobody's added a skill yet!</p>
+  <% end %>
+ </div>
+
+
+<% end %>

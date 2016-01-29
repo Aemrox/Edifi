@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
   def update
     binding.pry
     @user = User.find(params[:id])
@@ -24,8 +28,6 @@ class UsersController < ApplicationController
     @skill = Skill.new
     @user = current_user
   end
-
-
 
   private
   def user_params
