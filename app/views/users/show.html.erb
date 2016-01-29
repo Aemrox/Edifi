@@ -11,10 +11,10 @@
 </p>
 
 <!-- <h3>Classes: </h3>
-  add stuff here eventually --> 
+  add stuff here eventually -->
 
 <% if @user.teacher? %>
   <h3>Skills I Teach:</h3>
-  <%= render "teacher_skills" %>
+  <%= render partial: "teacher_skills", locals: {teacher: @user} %>
   <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
 <% end %>
