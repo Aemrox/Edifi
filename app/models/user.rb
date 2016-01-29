@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user
   end
+  
 
   def self.teachers
     self.all.map{|user| user if user.teacher?}
