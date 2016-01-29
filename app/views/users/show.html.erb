@@ -14,6 +14,9 @@
   add stuff here eventually --> 
 
 <% if @user.teacher? %>
+<!-- Connect with this teacher -->
+<%= button_to "Connect", action: "create", controller: "connections" %>
+
   <h3>Skills I Teach:</h3>
   <%= render "teacher_skills" %>
   <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
