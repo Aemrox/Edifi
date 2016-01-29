@@ -1,5 +1,16 @@
-
 <ul>
+  <% if !logged_in? %>
+    <%= render "layouts/default_navbar"  %>
+  <% elsif logged_in? && current_user.teacher? %>
+    <%= render "layouts/teacher_navbar" %>
+  <% else %>
+    <%= render "layouts/user_navbar" %>
+  <% end %>
+</ul>
+
+
+
+<!-- <ul>
 
     <% if logged_in? %>
       <li>
@@ -10,14 +21,9 @@
       <li>  <%= "Welcome, #{current_user.user_name}" %> </li>
       <li> <%= link_to "Become a teacher", "/users/teacherize" %>  </li>
     <% else  %>
-      <li>
-        <%= link_to "Home", root_path  %>
-      </li>
-      <li> <%= link_to "Browse subjects", subjects_path %>  </li>
-      <li>  <%= link_to "Log In", login_path %> </li>
-      <li>  <%= link_to "Sign Up", new_user_path %> </li>
+
 
     <% end %>
 
 
-</ul>
+</ul> -->
