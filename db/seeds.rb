@@ -22,28 +22,37 @@ av = Subject.new(name: "Audio Visual", description: "Learn how to edit stuff!")
 puts "Audio/Visual Created" if av.save
 
 #Design Skills
-photoshop = andrew.skills.new(name: "Adobe Photoshop", description: "Design graphics and make pictures pretty")
+photoshop = Skill.new(name: "Adobe Photoshop", description: "Design graphics and make pictures pretty")
 photoshop.subject = design
 puts "Photoshop skill added" if photoshop.save
-illustrator = andrew.skills.new(name: "Adobe Illustrator", description: "Design website and books")
+illustrator = Skill.new(name: "Adobe Illustrator", description: "Design website and books")
 illustrator.subject = design
 puts "Illustrator skill added" if illustrator.save
+andrew.skills << photoshop
+andrew.skills << illustrator
+andrew.save
 
 #AV Skills
-final_cut = adam.skills.new(name: "Final Cut Pro", description: "Edit Movies!")
+final_cut = Skill.new(name: "Final Cut Pro", description: "Edit Movies!")
 final_cut.subject = av
 puts "Final Cut Pro skill added" if final_cut.save
-pro_logic = adam.skills.new(name: "Pro Logic", description: "Edit Sounds")
+pro_logic = Skill.new(name: "Pro Logic", description: "Edit Sounds")
 pro_logic.subject = design
 puts "Pro Logic skill added" if pro_logic.save
+adam.skills << final_cut
+adam.skills << pro_logic
+adam.save
 
 #Finance Skills
-turbo_tax = ruchi.skills.new(name: "Turbo Tax", description: "Learn to do your")
+turbo_tax = Skill.new(name: "Turbo Tax", description: "Learn to do your")
 turbo_tax.subject = av
 puts "Turbo Tax skill added" if turbo_tax.save
-quickbooks = ruchi.skills.new(name: "Quick Books", description: "Learn how to balance your checkbook")
+quickbooks = Skill.new(name: "Quick Books", description: "Learn how to balance your checkbook")
 quickbooks.subject = av
 puts "Quick Books skill added" if quickbooks.save
+ruchi.skills << turbo_tax
+ruchi.skills << quickbooks
+ruchi.save
 
 
 puts "Ending"
