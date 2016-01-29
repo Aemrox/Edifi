@@ -1,4 +1,8 @@
+<% if current_user.teacher? %>
+<h1>Add new skills!</h1>
+<% else %>
 <h1>Sign up as a teacher!</h1>
+<% end %>
 
 <h2>What skills can you teach?</h2>
   <%= render "skill_selector"%>
