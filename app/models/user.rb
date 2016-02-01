@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :connections, foreign_key: 'teacher_id'
   has_many :teachers, through: :tutorials
   has_many :students, through: :connections
+  has_many :lessons, through: :connections
+  has_many :appointments, through: :tutorials, class_name: "Lesson"
 
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
