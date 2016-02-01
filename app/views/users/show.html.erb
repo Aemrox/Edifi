@@ -10,11 +10,23 @@
   <% end %>
 </p>
 
+<% if @user.teacher? %>
+  <%= render "teacher_skills" %>
+<% end %>
 <!-- <h3>Classes: </h3>
   add stuff here eventually -->
+
 
 <% if @user.teacher? %>
   <h3>Skills I Teach:</h3>
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
   <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
+<%end%>
+
+<% if @user.teacher? && !@user.connected?(session[:user_id]) && @user.id != session[:user_id]%>
+  <!-- Connect with this teacher and should only be able to see the skills  -->
+  <%= button_to "Connect", { :controller => "connection_requests",:action => "create", :connection_requests => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+<%else @user.teacher? && @user.connected?(session[:user_id]) %>
+  <!--  Add messaging feature and calender and all the other fancy stuff here. -->
+  <h2> Messaging and calender goes here </h2>
 <% end %>

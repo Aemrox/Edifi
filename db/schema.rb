@@ -16,6 +16,18 @@ ActiveRecord::Schema.define(version: 20160201183442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "connection_requests", force: :cascade do |t|
+    t.integer  "skill_id"
+    t.integer  "teacher_id"
+    t.integer  "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "connection_requests", ["skill_id"], name: "index_connection_requests_on_skill_id", using: :btree
+  add_index "connection_requests", ["student_id"], name: "index_connection_requests_on_student_id", using: :btree
+  add_index "connection_requests", ["teacher_id"], name: "index_connection_requests_on_teacher_id", using: :btree
+
   create_table "connections", force: :cascade do |t|
     t.integer  "skill_id"
     t.integer  "teacher_id"
@@ -77,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160201183442) do
     t.string   "last_name"
   end
 
+  add_foreign_key "connection_requests", "skills"
   add_foreign_key "connections", "skills"
   add_foreign_key "lessons", "connections"
   add_foreign_key "teacher_skills", "skills"
