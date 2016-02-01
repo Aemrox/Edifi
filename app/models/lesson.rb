@@ -6,10 +6,8 @@ class Lesson < ActiveRecord::Base
     self.start_time..self.end_time
   end
 
-  private
   def no_schedule_conflict
-    check_schedule(:student)
-    check_schedule(:teacher)
+    check_schedule(:student) && check_schedule(:teacher)
   end
 
   def check_schedule(party)
@@ -21,10 +19,16 @@ class Lesson < ActiveRecord::Base
     all_lessons.each do |lesson|
       if (self.start_time.to_date == lesson.start_time.to_date)
         range = lesson.date_range
-        if (self.start_time===range || self.end_time===range)
-          errors.add(:schedule_conflict, "this lesson conflicts with another lesson for this #{party}")
+        if (range.cover?(self.start_time))
+          errors.add(:start_time, "this lesson conflicts with another lesson for this #{party}")
+          return false
+        end
+        if (range.cover?(self.end_time))
+          errors.add(:end_time, "this lesson conflicts with another lesson for this #{party}")
+          return false
         end
       end
     end
+    return true
   end
 end
