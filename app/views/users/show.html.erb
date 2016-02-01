@@ -28,17 +28,10 @@
   <!-- Connect with this teacher and should only be able to see the skills  -->
   <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
 
-<% else @user.teacher? && !!@user.connected?(session[:user_id]) %>
-  <p> hi </p>
+<% elsif @user.teacher? && @user.connected?(session[:user_id]) && current_user.approval_status(@user.id) %>
 
-  <!--   <% @connection = current_user.approval_status(@user.id) %>
+  <p> hi, please find some cool things about connections </p>
 
-<% if @connection %>
-    <h2> Messaging and calender goes here </h2>
-  <% else  %>
-    <p>Your connection is awaiting approval.</p>
-  <% end %>-->
-  
-  <!--  Add messaging feature and calender and all the other fancy stuff here. -->
-
+<% else %>
+  <p>Awaiting connection</p>
 <% end %>

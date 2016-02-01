@@ -17,17 +17,18 @@ class User < ActiveRecord::Base
     user.authenticate(password) if user
   end
 
-
   def self.teachers
     self.all.map{|user| user if user.teacher?}
   end
 
   def connected?(student_id)
+    binding.pry
     Connection.find_by(:student_id=>student_id)&& Connection.find_by(:teacher_id=>self.id)
   end
 
   def approval_status(teacher_id)
-    @status = Connection.find_by(:student_id=>self.id)&& Connection.find_by(:teacher_id=>teacher_id)
+    status = Connection.find_by(:student_id=>self.id)&& Connection.find_by(:teacher_id=>teacher_id)
+    status.approved
   end
 
   def connection_requested?

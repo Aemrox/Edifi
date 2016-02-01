@@ -4,13 +4,15 @@ class ConnectionsController < ApplicationController
   end
 
   def create
+    @teacher = User.find(connection_params[:teacher_id])
     @connection = Connection.new(connection_params)
+    binding.pry
     if @connection.save
-        redirect_to current_user, notice: "Connection added!"
+        redirect_to @teacher, notice: "Connection added!"
         #delete connection_request and display the student whos connection you added.
-    else  
+    else
         #puts failire notice
-        redirect_to current_user, notice: "Unable to make connection! Try again."
+        redirect_to @teacher, notice: "Unable to make connection! Try again."
     end
   end
 
@@ -18,6 +20,7 @@ class ConnectionsController < ApplicationController
   end
 
   def update
+    binding.pry
     @connection = Connection.find(params[:id])
     @connection.approved = true
     @connection.save
@@ -30,7 +33,7 @@ class ConnectionsController < ApplicationController
   private
 
   def connection_params
-    params.require(:connections).permit(:teacher_id, :student_id, :approved) 
+    params.require(:connections).permit(:teacher_id, :student_id, :approved)
   end
 
 end
