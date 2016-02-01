@@ -1,9 +1,10 @@
-<h2>Search fo Skillz</h2>
-<%= render "skills/skillsearch" %>
-
 <% if current_user.teacher? %>
   <%= render "teacher_homepage" %>
   <%= render "user_homepage" %>
-<% else %>
+<% elsif logged_in? %>
   <%= render "user_homepage" %>
+<% else %>
+  <ul class "nav navbar-nav navbar-right">
+
+  </ul>
 <% end %>

@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'searchkick'
+
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

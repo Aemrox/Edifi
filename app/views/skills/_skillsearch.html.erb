@@ -1,3 +1,6 @@
-<%= form_tag skillsearch_path, {class: "Searchbox"} %>
-  <%= text_field_tag :query %>
-  <%= submit_tag "Search" %>
+<%= form_tag skillsearch_path, class: "navbar-form navbar-left" do%>
+  <div class="form-group">
+    <%= text_field_tag :query, nil, placeholder: "Search for Skills",class: "form-control" %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-default"%>
+<% end %>

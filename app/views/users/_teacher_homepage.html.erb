@@ -1,5 +1,5 @@
 <h1> My Skills </h1>
 
-<%= render "teacher_skills" %>
+<%= render partial: "teacher_skills", locals: {teacher: current_user} %>
 
 <h2> <%= link_to "View your profile page", current_user%> </h2>
