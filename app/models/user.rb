@@ -23,14 +23,15 @@ class User < ActiveRecord::Base
   end
 
   def connected?(student_id)
-
     Connection.find_by(:student_id=>student_id)&& Connection.find_by(:teacher_id=>self.id)
   end
 
-  def connection_requested?
+  def approval_status(teacher_id)
+    @status = Connection.find_by(:student_id=>self.id)&& Connection.find_by(:teacher_id=>teacher_id)
+  end
 
-    @requests = ConnectionRequest.where(:teacher_id=>self.id)
-    
+  def connection_requested?
+    @pending_requests = Connection.where(:teacher_id=>self.id, :approved => false)
   end
 
   def teacher?

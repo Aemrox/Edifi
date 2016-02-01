@@ -23,10 +23,22 @@
   <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
 <%end%>
 
-<% if @user.teacher? && !@user.connected?(session[:user_id]) && @user.id != session[:user_id]%>
+
+<% if @user.teacher? && !@user.connected?(session[:user_id]) &&!current_user.connected?(@user.id) && @user.id != session[:user_id]%>
   <!-- Connect with this teacher and should only be able to see the skills  -->
-  <%= button_to "Connect", { :controller => "connection_requests",:action => "create", :connection_requests => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
-<%else @user.teacher? && @user.connected?(session[:user_id]) %>
+  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+
+<% else @user.teacher? && !!@user.connected?(session[:user_id]) %>
+  <p> hi </p>
+
+  <!--   <% @connection = current_user.approval_status(@user.id) %>
+
+<% if @connection %>
+    <h2> Messaging and calender goes here </h2>
+  <% else  %>
+    <p>Your connection is awaiting approval.</p>
+  <% end %>-->
+  
   <!--  Add messaging feature and calender and all the other fancy stuff here. -->
-  <h2> Messaging and calender goes here </h2>
+
 <% end %>

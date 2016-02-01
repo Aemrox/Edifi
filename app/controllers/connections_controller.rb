@@ -12,8 +12,16 @@ class ConnectionsController < ApplicationController
         #puts failire notice
         redirect_to current_user, notice: "Unable to make connection! Try again."
     end
+  end
 
-  
+  def edit
+  end
+
+  def update
+    @connection = Connection.find(params[:id])
+    @connection.approved = true
+    @connection.save
+    redirect_to homepage_path
   end
 
   def show
@@ -22,7 +30,7 @@ class ConnectionsController < ApplicationController
   private
 
   def connection_params
-    params.require(:connections).permit(:teacher_id, :student_id) 
+    params.require(:connections).permit(:teacher_id, :student_id, :approved) 
   end
 
 end
