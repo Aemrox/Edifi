@@ -33,10 +33,7 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def connected?
-    binding.pry
-    Connection.all
-  end
+  
 
   private
   def user_params

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :connections, foreign_key: 'teacher_id'
   has_many :teachers, through: :tutorials
   has_many :students, through: :connections
+  has_many :connection_requests, foreign_key: 'teacher_id'
+  has_many :students, through: :connection_requests
 
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
@@ -21,8 +23,14 @@ class User < ActiveRecord::Base
   end
 
   def connected?(student_id)
-  
+
     Connection.find_by(:student_id=>student_id)&& Connection.find_by(:teacher_id=>self.id)
+  end
+
+  def connection_requested?
+
+    @requests = ConnectionRequest.where(:teacher_id=>self.id)
+    
   end
 
   def teacher?

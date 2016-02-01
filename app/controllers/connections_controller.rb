@@ -6,10 +6,11 @@ class ConnectionsController < ApplicationController
   def create
     @connection = Connection.new(connection_params)
     if @connection.save
-        redirect_to @user#something else with notice
+        redirect_to current_user, notice: "Connection added!"
+        #delete connection_request and display the student whos connection you added.
     else  
         #puts failire notice
-        redirect_to @user, notice: "Unable to make connection! Try again."
+        redirect_to current_user, notice: "Unable to make connection! Try again."
     end
 
   
@@ -21,7 +22,7 @@ class ConnectionsController < ApplicationController
   private
 
   def connection_params
-    params.require(:connection).permit(:teacher_id, :student_id) 
+    params.require(:connections).permit(:teacher_id, :student_id) 
   end
 
 end
