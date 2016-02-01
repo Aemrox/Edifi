@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+ 
+
+  
+
   root "home#index"
 
   get 'home/index'
@@ -18,7 +22,8 @@ Rails.application.routes.draw do
   post '/skillsearch', to: 'skills#search'
 
   resources :skills, only: [:new, :create, :index, :show]
-
+  resources :connections, only: [:new, :show, :create]
+  resources :connection_requests, only: [:new, :show, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

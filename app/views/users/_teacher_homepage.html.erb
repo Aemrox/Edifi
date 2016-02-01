@@ -3,3 +3,12 @@
 <%= render partial: "teacher_skills", locals: {teacher: current_user} %>
 
 <h2> <%= link_to "View your profile page", current_user%> </h2>
+<% @connection_requests = current_user.connection_requested? %>
+<% if @connection_requests %>
+  <% @connection_requests.each do |request| %>
+  <%= request.student_id %>
+ <%= button_to "Approve", { :controller => "connections",:action => "create", :connections => {:teacher_id => current_user.id, :student_id => request.student_id}} %>
+  <% end %>
+<% else %>
+<%= "You have no new requests" %>
+<% end %>
