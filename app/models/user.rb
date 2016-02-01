@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
     self.all.map{|user| user if user.teacher?}
   end
 
+  def connected?(student_id)
+  
+    Connection.find_by(:student_id=>student_id)&& Connection.find_by(:teacher_id=>self.id)
+  end
+
   def teacher?
     !self.skills.empty?
   end
