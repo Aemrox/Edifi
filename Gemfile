@@ -33,6 +33,8 @@ gem 'searchkick'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rails_12factor'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

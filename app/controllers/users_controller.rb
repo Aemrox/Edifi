@@ -32,6 +32,11 @@ class UsersController < ApplicationController
     redirect_to homepage_path, notice: "New Skills Added!"
   end
 
+  def calendar
+    @user = User.find(params[:id])
+    @lessons = @user.all_lessons
+  end
+
   private
   def user_params
     params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :bio, :first_name, :last_name)
