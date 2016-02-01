@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :students, through: :connections
   has_many :connection_requests, foreign_key: 'teacher_id'
   has_many :students, through: :connection_requests
+  has_many :lessons, through: :tutorials, class_name: "Lesson"
+  has_many :appointments, through: :connections
 
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
   def connection_requested?
 
     @requests = ConnectionRequest.where(:teacher_id=>self.id)
-    
+
   end
 
   def teacher?
