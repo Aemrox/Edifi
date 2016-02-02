@@ -18,7 +18,8 @@ class LessonsController < ApplicationController
 
   def create
     binding.pry
-    @lesson = Lesson.create(connection: lesson_params[:connection], start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
+    connection = Connection.find(lesson_params[:connection])
+    @lesson = Lesson.create(connection: connection, start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
     respond_to do |format|
       format.js {}
     end
