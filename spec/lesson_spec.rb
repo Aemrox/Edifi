@@ -2,9 +2,14 @@ require "spec_helper"
 
 describe Lesson do
   before(:each) do
+    User.destroy_all
+    Subject.destroy_all
+    Skill.destroy_all
+    Connection.destroy_all
+    Lesson.destroy_all
     @adam = User.create(user_name: "Adam", email: "Adam@may.com",
       password: "123", password_confirmation: "123")
-    @mdawg = User.new(user_name: "Madeleine", email: "madeleine@rose.com",
+    @mdawg = User.create(user_name: "Madeleine", email: "madeleine@rose.com",
       password: "123", password_confirmation: "123")
     @programming = Subject.create(name: "Programming", description: "Build Cool Shit")
     @ruby = Skill.create(name: "Ruby", description: "It's Amazing")
@@ -27,7 +32,7 @@ describe Lesson do
     it "student is aware of it's lessons" do
       @lesson.save
       @adam.save
-      binding.pry
+      # binding.pry
       expect(@adam.lessons).to include(@lesson)
     end
 
@@ -41,7 +46,6 @@ describe Lesson do
 
     it "validates against schedule" do
       @lesson.save
-      binding.pry
       start_time = @lesson.start_time + 1000
       end_time = start_time + 3600
       @lesson2 = Lesson.new(connection: @connection, start_time: start_time, end_time: end_time)

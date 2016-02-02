@@ -6,10 +6,10 @@ class Lesson < ActiveRecord::Base
     self.start_time..self.end_time
   end
 
-  def to_moment
+  def to_moment(current_user)
     json = {
       id: self.id,
-      title: self.title,
+      title: self.title(current_user),
       start: self.start_time,
       end: self.end_time,
       url: "url",
@@ -21,12 +21,16 @@ class Lesson < ActiveRecord::Base
     "#{self.connection.teacher.user_name} teaching #{self.connection.student.user_name} #{self.connection.skill.name}"
   end
 
-  def title
-   if (current_user.id == self.connection.teacher.id || current_user.id == self.connection.student.id)
-     lesson_title
-   else
-     "Booked Lesson"
-   end
+  def title(current_user)
+    if (current_user)
+      if (current_user.id == self.connection.teacher.id || current_user.id == self.connection.student.id)
+        lesson_title
+      else
+        "Booked Lesson"
+      end
+    else
+        "Booked Lesson"
+    end
   end
 
   def no_schedule_conflict
@@ -39,7 +43,6 @@ class Lesson < ActiveRecord::Base
     else
       all_lessons = self.connection.teacher.all_approved_lessons
     end
-    binding.pry
     all_lessons.each do |lesson|
       if (lesson && self.start_time.to_date == lesson.start_time.to_date)
         range = lesson.date_range
