@@ -18,12 +18,20 @@ class LessonsController < ApplicationController
 
   def create
     binding.pry
+    @lesson = Lesson.create(connection: lesson_params[:connection], start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   private
   def pull_user_id_from_url
     url = @_request.env["HTTP_REFERER"]
     url.match(/users\/(\d)\//)[1]
+  end
+
+  def lesson_params
+    params.require(:lesson).permit(:connection, :start_time, :end_time)
   end
 
 end

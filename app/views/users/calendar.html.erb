@@ -2,22 +2,7 @@
   <h1 class = "text-center"> <%= @teacher.name %>'s Calendar! </h1>
 </div>
 
-<div class="form group">
-  <%= form_tag '/lessons/render_options', remote: true  do%>
-    <label for = "lesson_date">Pick a date</label>
-    <input id = "lesson_date", name = "lesson[date]", type="text" data-provide='datepicker' >
-    <%= label_tag(:time, "Pick a time") %>
-    <%= time_select :lesson, :time, {minute_step: 15} %>
-    <%= label_tag(:length, "How long of a lesson?") %>
-    <%= select_tag(:length, options_for_select([["15 minutes", 15],["30 minutes", 30],["1 Hour", 60],])) %>
-    <%= submit_tag "See Options", class:"btn btn-primary" %>
-  <% end %>
-</div>
-
-<div id="lesson_button_group">
-  
-</div>
-
+<%= render "lessons/lesson_scheduler" %>
 
 <div id="calendar">
 
