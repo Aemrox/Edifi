@@ -33,8 +33,7 @@ class UsersController < ApplicationController
   end
 
   def calendar
-    @user = User.find(params[:id])
-    @lessons = @user.all_lessons
+    @teacher = User.find(params[:id])
   end
 
   private

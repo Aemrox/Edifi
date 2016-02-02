@@ -9,24 +9,20 @@
      No Bio :(
   <% end %>
 </p>
-
-<% if @user.teacher? %>
-  <%= render "teacher_skills" %>
-<% end %>
 <!-- <h3>Classes: </h3>
   add stuff here eventually -->
 
 
 <% if @user.teacher? %>
-  <h3>Skills I Teach:</h3>
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
+  <h3> <%= link_to "View My Calendar", {controller: "users", action: "calendar"}, class: "btn btn-primary" %></h3>
   <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
 <%end%>
 
 <% if @user.teacher? && !@user.connected?(session[:user_id]) && @user.id != session[:user_id]%>
   <!-- Connect with this teacher and should only be able to see the skills  -->
-  <%= button_to "Connect", { :controller => "connection_requests",:action => "create", :connection_requests => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+  <h3><%= button_to "Connect", { :controller => "connection_requests",:action => "create", :connection_requests => {:teacher_id => @user.id, :student_id => session[:user_id]}} %></h3>
 <%else @user.teacher? && @user.connected?(session[:user_id]) %>
   <!--  Add messaging feature and calender and all the other fancy stuff here. -->
-  <h2> Messaging and calender goes here </h2>
+  <!-- <h3> <%= link_to "View My Calendar" %> </h3> -->
 <% end %>

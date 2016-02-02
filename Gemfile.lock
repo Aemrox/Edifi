@@ -43,6 +43,8 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.5.0)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -57,6 +59,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     elasticsearch (1.0.15)
@@ -162,6 +165,14 @@ GEM
     rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
+    rspec-rails (3.4.0)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
+      rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     sass (3.4.21)
     sass-rails (5.0.4)
@@ -208,9 +219,11 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt (~> 3.1.7)
+  bootstrap-datepicker-rails
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
+  database_cleaner
   elasticsearch-model
   elasticsearch-rails
   fullcalendar-rails
@@ -223,6 +236,7 @@ DEPENDENCIES
   rails (= 4.2.5.1)
   rails_12factor
   rspec
+  rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   searchkick

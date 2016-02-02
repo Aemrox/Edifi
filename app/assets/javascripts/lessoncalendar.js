@@ -1,8 +1,6 @@
 $(function(){
-  $(".lesson_calendar").fullCalendar({
-    debugger
+  console.log("Ready!")
+  $('#calendar').fullCalendar({
     events: '/lessons/json'
   });
-
-
 });
