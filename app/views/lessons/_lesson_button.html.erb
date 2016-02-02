@@ -1,0 +1,5 @@
+<%= button_to "#{lesson.start_time.strftime("%H:%M")}",
+                  lessons_path(lesson: {connection: lesson.connection,
+                                        start_time: lesson.start_time,
+                                        end_time: lesson.end_time}),
+                  class: "btn btn-primary"%>

@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def all_approved_lessons
-    (self.lessons + self.appointments).map{|lesson| lesson if lesson.approved}
+    (self.lessons + self.appointments).map{|lesson| lesson if lesson.approved}.compact
   end
 
   def pending_lesson_requests
