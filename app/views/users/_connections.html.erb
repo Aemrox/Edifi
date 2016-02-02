@@ -1,0 +1,16 @@
+<% if @user.teacher? && @user.no_connections_with?(current_user) %>
+
+  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+
+<% elsif @user.teacher? && @user.connected_and_approved?(current_user) %>
+
+  <p> This is where we will insert functions for scheduling lessons, appointments, etc </p>
+
+<% else %>
+
+  <p><%= "Awaiting connection approval from #{@user.first_name}."%></p>
+
+<% end %>
+
+
+
