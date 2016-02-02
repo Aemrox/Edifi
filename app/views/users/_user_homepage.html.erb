@@ -6,7 +6,7 @@
   <ul>
   <% current_user.tutorials.each do |tutorial|  %>
 
-    <li><%= link_to "First name: #{tutorial.teacher.first_name}, Last name: #{tutorial.teacher.last_name}", tutorial.teacher %></li>
+    <li><%= link_to "#{tutorial.teacher.name}", tutorial.teacher %></li>
 
 
     <% if !Conversation.between(current_user.id, tutorial.teacher.id).present? %>
