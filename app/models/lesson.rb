@@ -6,18 +6,42 @@ class Lesson < ActiveRecord::Base
     self.start_time..self.end_time
   end
 
+  def to_moment
+    json = {
+      id: self.id,
+      title: self.title,
+      start: self.start_time,
+      end: self.end_time,
+      url: "url",
+      overlap: false
+    }
+  end
+
+  def lesson_title
+    "#{self.connection.teacher.user_name} teaching #{self.connection.student.user_name} #{self.connection.skill.name}"
+  end
+
+  def title
+   if (current_user.id == self.connection.teacher.id || current_user.id == self.connection.student.id)
+     lesson_title
+   else
+     "Booked Lesson"
+   end
+  end
+
   def no_schedule_conflict
     check_schedule(:student) && check_schedule(:teacher)
   end
 
   def check_schedule(party)
     if party == :student
-      all_lessons = self.connection.student.lessons
+      all_lessons = self.connection.student.all_approved_lessons
     else
-      all_lessons = self.connection.teacher.appointments
+      all_lessons = self.connection.teacher.all_approved_lessons
     end
+    binding.pry
     all_lessons.each do |lesson|
-      if (self.start_time.to_date == lesson.start_time.to_date)
+      if (lesson && self.start_time.to_date == lesson.start_time.to_date)
         range = lesson.date_range
         if (range.cover?(self.start_time))
           errors.add(:start_time, "this lesson conflicts with another lesson for this #{party}")

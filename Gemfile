@@ -33,6 +33,9 @@ gem 'searchkick'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rails_12factor'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-datepicker-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -43,7 +46,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec'
+  gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'database_cleaner'
 end
 
 group :development do

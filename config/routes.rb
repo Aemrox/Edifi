@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
- 
 
-  
+
+
 
   root "home#index"
 
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   get '/users/teacherize', to: 'users#teacherize'
+  get '/users/:id/calendar', to: 'users#calendar'
   post '/users/becometeacher', to: 'users#becometeacher'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
   resources :skills, only: [:new, :create, :index, :show]
   resources :connections, only: [:new, :show, :create, :update]
   resources :connection_requests, only: [:new, :show, :create]
+
+  get '/lessons/json', to: 'lessons#lesson_json'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

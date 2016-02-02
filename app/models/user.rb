@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   has_many :students, through: :connections
   has_many :connection_requests, foreign_key: 'teacher_id'
   has_many :students, through: :connection_requests
-  has_many :lessons, through: :tutorials, class_name: "Lesson"
-  has_many :appointments, through: :connections
+  has_many :lessons, through: :tutorials
+  has_many :appointments, through: :connections, class_name: "Lesson"
 
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
@@ -42,6 +42,22 @@ class User < ActiveRecord::Base
 
   def connected_and_approved?(user)
     self.connected?(user.id) && user.approval_status(self.id)
+  end
+
+  def all_approved_lessons
+    (self.lessons + self.appointments).map{|lesson| lesson if lesson.approved}
+  end
+
+  def pending_lesson_requests
+    self.appointments.map{|lesson| lesson unless lesson.approved}
+  end
+
+  def unapproved_lesson_requests
+    self.lessons.map{|lesson| lesson unless lesson.approved}
+  end
+
+  def name
+    (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
   end
 
   def teacher?
