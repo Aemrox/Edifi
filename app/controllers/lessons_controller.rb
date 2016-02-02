@@ -4,8 +4,7 @@ class LessonsController < ApplicationController
     url = @_request.env["HTTP_REFERER"]
     id = url.match(/users\/(\d)\//)[1]
     @teacher = User.find(id)
-    @lessons = @teacher.all_approved_lessons.map {|lesson| lesson.to_moment}
-    # binding.pry
+    @lessons = @teacher.all_approved_lessons.map {|lesson| lesson.to_moment(current_user)}
     render json: @lessons
   end
 
