@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :appointments, through: :connections, class_name: "Lesson"
   has_many :messages, foreign_key: 'sender_id'
   has_many :messages, foreign_key: 'receiver_id'
+  has_many :conversations, :foreign_key => :sender_id
+
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user

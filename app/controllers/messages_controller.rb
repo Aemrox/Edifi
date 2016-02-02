@@ -1,33 +1,26 @@
 class MessagesController < ApplicationController
 
 
-  def show
-    @message = Message.find(params[:id])
-  end
+  before_filter :authenticate!
 
   def new
-    @message = Message.new
+    @conversation = Conversation.find(params[:conversation_id])
+    @message = Message.new(user_id: params[:user_id], conversation_id: params[:conversation_id])
   end
 
   def create
-     @message = Message.new(message_params)
-     if @message.save
-        redirect_to @message
-      else 
-       redirect_to homepage_path, error: "Could not send your message"  
-      end
+    @conversation = Conversation.find(params[:conversation_id])
+    @message = @conversation.messages.build(message_params)
+    @message.user_id = current_user.id
+    @message.save!
+
+    redirect_to @conversation
   end
-    
-
-
-
 
   private
 
   def message_params
-    params.require(:message).permit(:body, :sender_id, :receiver_id)
+    params.require(:message).permit(:body, :user_id, :conversation_id)
   end
-
-
 
 end

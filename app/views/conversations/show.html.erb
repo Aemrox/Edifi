@@ -1,0 +1,15 @@
+<h3>Conversation with <%= @conversation.recipient.name %></h3>
+<div class="panel panel-default">
+  <% if @conversation.messages.any? %>
+  <% @conversation.messages.each do |message| %>
+    <div class="panel-heading">
+      <%= message.user.name %> wrote:
+    </div>
+    <div class="panel-body">
+      <%= message.body %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<%= link_to "New message", new_message_path(:controller => "messages", :action => "create", :conversation_id => @conversation.id, :user_id => current_user.id, :recipient_id => @conversation.recipient.id), class: "btn btn-success btn-xs" %>
