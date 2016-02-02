@@ -13,7 +13,6 @@ andrew = User.new(user_name: "Andrew", email: "Andrew@STEWART.com",
   password: "123", password_confirmation: "123")
 puts "User 4 confirmed" if andrew.save
 
-
 design = Subject.new(name: "Design", description: "Learn how to design stuff!")
 puts "Design Created" if design.save
 finance = Subject.new(name: "Finance", description: "Learn how to finance stuff!")
@@ -26,6 +25,7 @@ photoshop = Skill.new(name: "Adobe Photoshop", description: "Design graphics and
 photoshop.subject = design
 puts "Photoshop skill added" if photoshop.save
 illustrator = Skill.new(name: "Adobe Illustrator", description: "Design website and books")
+# binding.pr
 illustrator.subject = design
 puts "Illustrator skill added" if illustrator.save
 andrew.skills << photoshop

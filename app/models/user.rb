@@ -19,20 +19,29 @@ class User < ActiveRecord::Base
     user.authenticate(password) if user
   end
 
-
   def self.teachers
     self.all.map{|user| user if user.teacher?}
   end
 
   def connected?(student_id)
+    Connection.find_by(:student_id=>student_id, :teacher_id=>self.id)
+  end
 
-    Connection.find_by(:student_id=>student_id)&& Connection.find_by(:teacher_id=>self.id)
+  def no_connections_with?(user)
+    !self.connected?(user.id) && !user.connected?(self.id)
+  end
+
+  def approval_status(teacher_id)
+    status = Connection.find_by(:student_id=>self.id, :teacher_id=>teacher_id)
+    status.approved
   end
 
   def connection_requested?
+    @pending_requests = Connection.where(:teacher_id=>self.id, :approved => false)
+  end
 
-    @requests = ConnectionRequest.where(:teacher_id=>self.id)
-
+  def connected_and_approved?(user)
+    self.connected?(user.id) && user.approval_status(self.id)
   end
 
   def teacher?

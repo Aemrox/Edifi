@@ -1,3 +1,11 @@
-<h1>User Home Page</h1>
+<h1><%= "Hi there, #{current_user.first_name}"  %></h1>
 
-<p>Information about the user's connections with teachers, including the schedule of their lessons and messages will be visible here.
+<!-- Will add additional functionality -->
+<% if current_user.teachers.length > 0 %>
+  <h3>You have connected with the following teachers:</h3>
+  <ul>
+  <% current_user.tutorials.each do |tutorial|  %>
+  <li><%= link_to "First name: #{tutorial.teacher.first_name}, Last name: #{tutorial.teacher.last_name}", tutorial.teacher %></li>
+  <% end %>
+  </ul>
+<% end %>

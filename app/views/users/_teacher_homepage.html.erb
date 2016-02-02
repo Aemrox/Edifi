@@ -3,11 +3,14 @@
 <%= render partial: "teacher_skills", locals: {teacher: current_user} %>
 
 <h2> <%= link_to "View your profile page", current_user%> </h2>
-<% @connection_requests = current_user.connection_requested? %>
-<% if @connection_requests %>
-  <% @connection_requests.each do |request| %>
-  <%= request.student_id %>
- <%= button_to "Approve", { :controller => "connections",:action => "create", :connections => {:teacher_id => current_user.id, :student_id => request.student_id}} %>
+
+<% @pending_requests = current_user.connection_requested? %>
+<% if @pending_requests %>
+  <% @pending_requests.each do |request| %>
+    <%= "You have a connection request from #{request.student.first_name}" %>
+
+    <%= button_to "Approve!", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true} %>
+
   <% end %>
 <% else %>
 <%= "You have no new requests" %>
