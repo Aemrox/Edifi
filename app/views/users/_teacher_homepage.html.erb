@@ -7,9 +7,9 @@
 <% @pending_requests = current_user.connection_requested? %>
 <% if @pending_requests %>
   <% @pending_requests.each do |request| %>
-    <%= request.student_id %>
+    <%= "You have a connection request from #{request.student.first_name}" %>
 
-    <%= button_to "Update", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true} %>
+    <%= button_to "Approve!", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true} %>
 
   <% end %>
 <% else %>

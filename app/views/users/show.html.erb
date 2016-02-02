@@ -1,6 +1,5 @@
 <h1> <%= @user.user_name %> </h1>
 
-
 <h2> Bio:</h2>
 <p>
   <% if @user.bio%>
@@ -10,28 +9,21 @@
   <% end %>
 </p>
 
-<% if @user.teacher? %>
-  <%= render "teacher_skills" %>
-<% end %>
-<!-- <h3>Classes: </h3>
-  add stuff here eventually -->
-
 
 <% if @user.teacher? %>
-  <h3>Skills I Teach:</h3>
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
-  <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
 <%end%>
 
-
-<% if @user.teacher? && !@user.connected?(session[:user_id]) &&!current_user.connected?(@user.id) && @user.id != session[:user_id]%>
-  <!-- Connect with this teacher and should only be able to see the skills  -->
+<% if logged_in? %>
+  <% if @user.teacher? && !@user.connected?(session[:user_id]) &&!current_user.connected?(@user.id) && @user.id != session[:user_id]%>
+    <!-- Connect with this teacher and should only be able to see the skills  -->
   <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
 
-<% elsif @user.teacher? && @user.connected?(session[:user_id]) && current_user.approval_status(@user.id) %>
+  <% elsif @user.teacher? && @user.connected?(session[:user_id]) && current_user.approval_status(@user.id) %>
 
-  <p> hi, please find some cool things about connections </p>
+    <p> This is where we will insert functions for scheduling lessons, appointments, etc </p>
 
-<% else %>
-  <p>Awaiting connection</p>
+  <% else %>
+    <p><%= "Awaiting connection approval from #{@user.first_name}."%></p>
+  <% end %>
 <% end %>
