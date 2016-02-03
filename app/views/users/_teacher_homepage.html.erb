@@ -1,8 +1,6 @@
-<h1> My Skills </h1>
+
 
 <%= render partial: "teacher_skills", locals: {teacher: current_user} %>
-
-<h2> <%= link_to "View your profile page", current_user%> </h2>
 
 <% @pending_requests = current_user.connection_requested? %>
 <% if @pending_requests %>
