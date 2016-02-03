@@ -24,6 +24,10 @@ class LessonsController < ApplicationController
     end
   end
 
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
+
   private
   def pull_user_id_from_url
     url = @_request.env["HTTP_REFERER"]

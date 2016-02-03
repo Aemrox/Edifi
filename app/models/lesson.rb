@@ -12,7 +12,7 @@ class Lesson < ActiveRecord::Base
       title: self.title(current_user),
       start: self.start_time,
       end: self.end_time,
-      url: "url",
+      url: "/lessons/#{self.id}",
       overlap: false
     }
   end
