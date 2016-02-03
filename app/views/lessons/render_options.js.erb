@@ -1,0 +1,7 @@
+var html = "";
+<% @lessons.each do |lesson| %>
+  html += "<%= j render partial: 'lessons/lesson_button', locals: {lesson: lesson} %>"
+<%end%>
+
+$('#lesson_button_group').empty()
+$('#lesson_button_group').append(html)

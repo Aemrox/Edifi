@@ -6,11 +6,11 @@
 
   <%= render :partial => 'messages/message_button', :locals => {:recipient => @user} %>
 
+  <%= render "lessons/lesson_scheduler" %>
+
+
 <% else %>
 
-  <p><%= "Awaiting connection approval from #{@user.first_name}."%></p>
+  <p><%= "Awaiting connection approval from #{@user.name}."%></p>
 
 <% end %>
-
-
-
