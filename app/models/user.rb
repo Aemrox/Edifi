@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_uniqueness_of :email, :user_name
   validates_presence_of :email, :user_name, :password_digest
-
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   has_many :teacher_skills, foreign_key: 'teacher_id'
   has_many :skills, through: :teacher_skills, foreign_key: 'teacher_id'
   has_many :tutorials, foreign_key: 'student_id', class_name: "Connection"
