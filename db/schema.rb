@@ -105,6 +105,5 @@ ActiveRecord::Schema.define(version: 20160203203334) do
   add_foreign_key "lessons", "skills"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
-  add_foreign_key "skills", "subjects"
   add_foreign_key "teacher_skills", "skills"
 end

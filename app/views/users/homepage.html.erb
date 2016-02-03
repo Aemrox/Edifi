@@ -1,10 +1,2 @@
-<% if current_user.teacher? %>
-  <%= render "teacher_homepage" %>
-  <%= render "user_homepage" %>
-<% elsif logged_in? %>
-  <%= render "user_homepage" %>
-<% else %>
-  <ul class "nav navbar-nav navbar-right">
 
-  </ul>
-<% end %>
+<%= render "inbox" %>
