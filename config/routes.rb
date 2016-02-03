@@ -24,10 +24,12 @@ Rails.application.routes.draw do
 
   post '/skillsearch', to: 'skills#search'
 
-  resources :messages, only: [:new, :create, :index, :show]
+
   resources :skills, only: [:new, :create, :index, :show]
   resources :connections, only: [:new, :show, :create, :update]
-  resources :conversations, only: [:new, :show, :create]
+  resources :conversations, only: [:new, :show, :create] do
+    resources :messages, only: [:new, :create, :index, :show]
+  end
 
   get '/lessons/json', to: 'lessons#lesson_json'
   post '/lessons/render_options', to: 'lessons#render_options'

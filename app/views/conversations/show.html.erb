@@ -1,5 +1,5 @@
 <h3>Conversation with <%= @conversation.recipient.name %></h3>
-<div class="panel panel-default">
+<div class="panel panel-default conversation">
   <% if @conversation.messages.any? %>
   <% @conversation.messages.each do |message| %>
     <div class="panel-heading">
@@ -13,5 +13,19 @@
 <% end %>
 </div>
 
-<%= render 'messages/new' %>
+<%= form_for [@conversation, Message.new], :remote => true do |f| %>
+  <div class="form-group">
+
+      <%= f.label :body, "New message" %>
+      <%= f.text_area :body, class: "form-control", rows: 3 %>
+      <%= hidden_field_tag(:user_id, current_user.id) %>
+      <%= hidden_field_tag(:conversation_id, @conversation.id) %>
+      <br>
+    <%= f.submit "Send", class: "btn btn-default btn-primary" %>
+
+  </div>
+<% end %>
+
+
+
 
