@@ -17,7 +17,7 @@
 
   <% if current_user.students.length > 0 %>
     <div class="list-group">
-    <h4 class="list-group-item">Students:</h2>
+    <h2 class="list-group-item">Students:</h2>
     <% current_user.students.each do |student| %>
       <div class="list-group-item"><%= link_to "#{student.name}", student %> -
         <%= render :partial => 'messages/message_button', :locals => {:recipient => student} %>

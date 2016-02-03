@@ -1,0 +1,9 @@
+<h1> conversations</h1>
+<% current_user.conversations.each do |conversation| %>
+<% binding.pry %>
+   <% if current_user.sender?(conversation)%>
+     <%=  conversation.recipient.name %>
+   <% else %>
+     <%= conversation.sender.name %>
+   <% end %>
+<% end %>
