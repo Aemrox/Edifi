@@ -1,0 +1,16 @@
+
+
+<%= form_for @message do |f| %>
+  <div class="form-group">
+
+      <%= f.label :body, "New message" %>
+      <%= f.text_area :body, class: "form-control", rows: 3 %>
+      <%= hidden_field_tag(:user_id, current_user.id) %>
+      <%= hidden_field_tag(:conversation_id, @conversation.id) %>
+      <br>
+    <%= f.submit "Send", class: "btn btn-default btn-primary" %>
+
+  </div>
+<% end %>
+
+

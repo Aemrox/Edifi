@@ -4,7 +4,7 @@
 
 <% elsif @user.teacher? && @user.connected_and_approved?(current_user) %>
 
-  <p> This is where we will insert functions for scheduling lessons, appointments, etc </p>
+  <%= render :partial => 'messages/message_button', :locals => {:recipient => @user} %>
 
 <% else %>
 

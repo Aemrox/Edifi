@@ -1,0 +1,17 @@
+<h3>Conversation with <%= @conversation.recipient.name %></h3>
+<div class="panel panel-default">
+  <% if @conversation.messages.any? %>
+  <% @conversation.messages.each do |message| %>
+    <div class="panel-heading">
+      <strong><%= message.user.name %> wrote:</strong> <br>
+      <%= message.created_at %>
+    </div>
+    <div class="panel-body">
+      <%= message.body %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<%= render 'messages/new' %>
+
