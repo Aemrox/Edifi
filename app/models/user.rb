@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def  sender?(conversation)
-    !!conversation.sender == self
+    !!(conversation.sender == self)
   end
 
 end

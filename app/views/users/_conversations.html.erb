@@ -1,9 +1,8 @@
-<h1> conversations</h1>
+
 <% current_user.conversations.each do |conversation| %>
-<% binding.pry %>
    <% if current_user.sender?(conversation)%>
-     <%=  conversation.recipient.name %>
+   <p>  <%=  conversation.recipient.name %> - <%= conversation.messages.last.body.slice(0..49) %> <%= link_to "see conversation", conversation %> </p>
    <% else %>
-     <%= conversation.sender.name %>
+    <p> <%= conversation.sender.name %> - <%= conversation.messages.last.body.slice(0..49) %> <%= link_to "see conversation", conversation %> </p>
    <% end %>
 <% end %>
