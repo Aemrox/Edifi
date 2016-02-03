@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
       @conversation = Conversation.create!(conversation_params)
     end
 
-    redirect_to new_message_path
+    redirect_to conversation(@conversation)
 
   end
 

@@ -1,23 +1,30 @@
-<h1><%= "Hi there, #{current_user.first_name}"  %></h1>
+<h1><%= "Hi there, #{current_user.name}"  %></h1>
 
-<!-- Will add additional functionality -->
-<% if current_user.teachers.length > 0 %>
-  <h3>You have connected with the following teachers:</h3>
-  <ul>
-  <% current_user.tutorials.each do |tutorial|  %>
+<% if current_user.connections %>
 
-    <li><%= link_to "#{tutorial.teacher.name}", tutorial.teacher %></li>
+  <h3>Your connections:</h3>
 
-
-    <% if !Conversation.between(current_user.id, tutorial.teacher.id).present? %>
-
-      <%= link_to "Start a conversation", conversations_path(:controller => "conversations", :action => "create", :conversations => {:sender_id => current_user.id, :recipient_id => tutorial.teacher.id}), class: "btn btn-success btn-xs", :method=> :post %>
-
-    <% else %>
-      <% conversation = Conversation.between(current_user.id, tutorial.teacher.id).first %>
-      <%= link_to "See conversation", conversation_path(conversation), class: "btn btn-success btn-xs" %>
-
+  <% if current_user.teachers.length > 0 %>
+    <div class="list-group">
+    <h4 class="list-group-item">Teachers:</h2>
+    <% current_user.teachers.each do |teacher| %>
+      <div class="list-group-item"><%= link_to "#{teacher.name}", teacher %> -
+        <%= render :partial => 'messages/message_button', :locals => {:recipient => teacher} %>
+      </li>
     <% end %>
+    </div>
   <% end %>
-  </ul>
+
+  <% if current_user.students.length > 0 %>
+    <div class="list-group">
+    <h4 class="list-group-item">Students:</h2>
+    <% current_user.students.each do |student| %>
+      <div class="list-group-item"><%= link_to "#{student.name}", student %> -
+        <%= render :partial => 'messages/message_button', :locals => {:recipient => student} %>
+      </li>
+    <% end %>
+    </div>
+  <% end %>
+
 <% end %>
+

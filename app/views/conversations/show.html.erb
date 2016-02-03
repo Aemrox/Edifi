@@ -3,7 +3,8 @@
   <% if @conversation.messages.any? %>
   <% @conversation.messages.each do |message| %>
     <div class="panel-heading">
-      <%= message.user.name %> wrote:
+      <strong><%= message.user.name %> wrote:</strong> <br>
+      <%= message.created_at %>
     </div>
     <div class="panel-body">
       <%= message.body %>
@@ -12,4 +13,5 @@
 <% end %>
 </div>
 
-<%= link_to "New message", new_message_path(:controller => "messages", :action => "create", :conversation_id => @conversation.id, :user_id => current_user.id, :recipient_id => @conversation.recipient.id), class: "btn btn-success btn-xs" %>
+<%= render 'messages/new' %>
+
