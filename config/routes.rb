@@ -31,7 +31,8 @@ Rails.application.routes.draw do
 
   get '/lessons/json', to: 'lessons#lesson_json'
   post '/lessons/render_options', to: 'lessons#render_options'
-  resources :lessons, only: [:create, :show]
+  post '/lessons/:id/approve', to: 'lessons#approve'
+  resources :lessons, only: [:create, :show, :update, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

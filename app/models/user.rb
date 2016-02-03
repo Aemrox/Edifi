@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     self.appointments.map{|appointment| appointment if appointment.approved}.compact
   end
 
-  def pending_lesson_requests
+  def pending_appointment_requests
     self.appointments.map{|lesson| lesson unless lesson.approved}.compact
   end
 

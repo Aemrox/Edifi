@@ -1,6 +1,7 @@
 var html = "<h3 class = 'col-md-12'> A request has been made to "
 html += "<%= @lesson.connection.teacher.name %> for a lesson at "
-html += "<%= @lesson.start_time.strftime '%Y-%m-%d %H:%M' %> </h3>"
+html += "<%= @lesson.start_time.strftime '%Y-%m-%d %H:%M' %> "
+html += "in <%= @lesson.skill.name %> </h3>"
 
 $('#lesson_button_group').empty()
 $('#lesson_button_group').append(html)

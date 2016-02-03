@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202184524) do
+ActiveRecord::Schema.define(version: 20160203203334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "connections", force: :cascade do |t|
-    t.integer  "skill_id"
     t.integer  "teacher_id"
     t.integer  "student_id"
     t.datetime "created_at",                 null: false
@@ -25,7 +24,6 @@ ActiveRecord::Schema.define(version: 20160202184524) do
     t.boolean  "approved",   default: false
   end
 
-  add_index "connections", ["skill_id"], name: "index_connections_on_skill_id", using: :btree
   add_index "connections", ["student_id"], name: "index_connections_on_student_id", using: :btree
   add_index "connections", ["teacher_id"], name: "index_connections_on_teacher_id", using: :btree
 
@@ -47,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160202184524) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.boolean  "approved",      default: false
+    t.integer  "skill_id"
   end
 
   add_index "lessons", ["connection_id"], name: "index_lessons_on_connection_id", using: :btree
@@ -100,9 +99,12 @@ ActiveRecord::Schema.define(version: 20160202184524) do
     t.string   "last_name"
   end
 
-  add_foreign_key "connections", "skills"
+  add_foreign_key "connections", "users", column: "student_id"
+  add_foreign_key "connections", "users", column: "teacher_id"
   add_foreign_key "lessons", "connections"
+  add_foreign_key "lessons", "skills"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "skills", "subjects"
   add_foreign_key "teacher_skills", "skills"
 end

@@ -25,7 +25,6 @@ photoshop = Skill.new(name: "Adobe Photoshop", description: "Design graphics and
 photoshop.subject = design
 puts "Photoshop skill added" if photoshop.save
 illustrator = Skill.new(name: "Adobe Illustrator", description: "Design website and books")
-# binding.pr
 illustrator.subject = design
 puts "Illustrator skill added" if illustrator.save
 andrew.skills << photoshop
@@ -53,6 +52,19 @@ puts "Quick Books skill added" if quickbooks.save
 ruchi.skills << turbo_tax
 ruchi.skills << quickbooks
 ruchi.save
+
+#connections
+adam_madeleine = Connection.new(teacher: adam, student: madeleine, approved: true)
+puts "adam_madeleine connection added" if adam_madeleine.save
+andrew_ruchi = Connection.new(teacher: andrew, student: ruchi, approved: true)
+puts "andrew_ruchi connection added" if andrew_ruchi.save
+
+#lessons
+adam_final_cut = Lesson.new(connection: adam_madeleine, skill: final_cut, start_time: Time.now, end_time: Time.now + 1.hour)
+puts "final_cut lesson added" if adam_final_cut.save
+andrew_photoshop = Lesson.new(connection: andrew_ruchi, skill: photoshop, start_time: Time.now, end_time: Time.now + 1.hour)
+puts "photoshop lesson added" if andrew_photoshop.save
+
 Skill.reindex
 
 puts "Ending"

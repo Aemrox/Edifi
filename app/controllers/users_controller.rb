@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
   def calendar
     @teacher = User.find(params[:id])
+    @user = @teacher
   end
 
   private

@@ -1,0 +1,8 @@
+<hr>
+<h2>My Appointment Requests</h2>
+<% if current_user.pending_appointment_requests.length >0 %>
+  <% current_user.pending_appointment_requests.each do |appointment| %>
+    <%= render appointment %>
+    <%= button_to "Approve!", {controller: "lessons", action: "approve", id: appointment.id}, remote: true%>
+  <% end %>
+<% end %>
