@@ -1,16 +1,16 @@
 class ConversationsController < ApplicationController
 
-  before_filter :authenticate!
+  before_filter :authenticate! 
+  before_filter :authenticate_owner!, :only => :show
 
   def create
-    binding.pry
+    
     if Conversation.between(params[:sender_id],params[:recipient_id]).present?
       @conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first
     else
       @conversation = Conversation.create!(conversation_params)
     end
-
-    redirect_to conversation(@conversation)
+    redirect_to @conversation
 
   end
 
@@ -20,6 +20,15 @@ class ConversationsController < ApplicationController
     @messages = @conversation.messages
     @message = Message.new
   end
+
+  def authenticate_owner!
+      @convo = Conversation.find(params[:id])
+      if @convo.sender == current_user || @convo.recipient == current_user
+      else 
+       redirect_to homepage_path, notice: 'Thou Shalt Nought duuu dat :('
+     end   
+   
+ end
 
   private
   def conversation_params

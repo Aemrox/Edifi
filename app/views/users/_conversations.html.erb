@@ -1,0 +1,8 @@
+
+<% current_user.conversations.each do |conversation| %>
+   <% if current_user.sender?(conversation)%>
+   <p>  <%=  conversation.recipient.name %> - <%= conversation.messages.last.body.slice(0..49) %> <%= link_to "see conversation", conversation %> </p>
+   <% else %>
+    <p> <%= conversation.sender.name %> - <%= conversation.messages.last.body.slice(0..49) %> <%= link_to "see conversation", conversation %> </p>
+   <% end %>
+<% end %>

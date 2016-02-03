@@ -16,3 +16,4 @@ class Conversation < ActiveRecord::Base
   end
 
 end
+  

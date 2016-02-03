@@ -13,7 +13,9 @@ class User < ActiveRecord::Base
   has_many :appointments, through: :connections, class_name: "Lesson"
   has_many :messages, foreign_key: 'sender_id'
   has_many :messages, foreign_key: 'receiver_id'
-  has_many :conversations, :foreign_key => :sender_id
+  has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
+  has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
+
 
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
@@ -63,6 +65,20 @@ class User < ActiveRecord::Base
 
   def teacher?
     !self.skills.empty?
+  end
+
+  def conversations
+     conversations = self.out_convos
+     conversations << self.in_convos
+     return conversations
+  end
+
+  def sender?(conversation)
+    !!(conversation.sender == self)
+  end
+
+  def recipient?(conversation)
+    !!(conversation.recipient == self)
   end
 
 end
