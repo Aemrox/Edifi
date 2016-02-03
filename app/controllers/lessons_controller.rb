@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.create(connection_id: lesson_params[:connection], skill_id: lesson_params[:skill] start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
+    @lesson = Lesson.create(connection_id: lesson_params[:connection], skill_id: lesson_params[:skill], start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
     respond_to do |format|
       format.js {}
     end

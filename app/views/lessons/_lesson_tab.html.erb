@@ -1,0 +1,5 @@
+<% if current_user.teacher? %>
+  <%= render "lessons/pending_appointments" %>
+  <%= render "lessons/my_appointments" %>
+<% end %>
+<%= render "lessons/my_lessons" %>
