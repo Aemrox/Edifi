@@ -1,9 +1,9 @@
  <% if current_user == @lesson.connection.teacher || current_user == @lesson.connection.student %>
    <% if @lesson.approved %>
     <h3><%= @lesson.title %></h3>
-    <h5>Student: <%= @lesson.connection.student %></h5>
-    <h5>Teacher: <%= @lesson.connection.teacher %></h5>
-    <h5>Skill: <%= @lesson.connection.skill %> </h5>
+    <h5>Student: <%= @lesson.connection.student.name %></h5>
+    <h5>Teacher: <%= @lesson.connection.teacher.name %></h5>
+    <h5>Skill: <%= @lesson.skill.name %> </h5>
     <h5>Starts: <%= @lesson.start_time.strftime("%m/%d/%Y, %H:%M") %></h5>
     <h5>Ends: <%= @lesson.end_time.strftime("%m/%d/%Y, %H:%M") %></h5>
   <% else %>

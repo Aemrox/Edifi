@@ -17,8 +17,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    connection = Connection.find(lesson_params[:connection])
-    @lesson = Lesson.create(connection: connection, start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
+    @lesson = Lesson.create(connection_id: lesson_params[:connection], skill_id: lesson_params[:skill], start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
     respond_to do |format|
       format.js {}
     end
@@ -28,6 +27,15 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  def approve
+    @lesson = Lesson.find(params[:id])
+    @lesson.approved = true
+    @lesson.save
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   private
   def pull_user_id_from_url
     url = @_request.env["HTTP_REFERER"]
@@ -35,7 +43,7 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:connection, :start_time, :end_time)
+    params.require(:lesson).permit(:connection, :skill, :start_time, :end_time)
   end
 
 end

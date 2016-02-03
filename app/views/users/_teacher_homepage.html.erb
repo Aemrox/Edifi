@@ -2,7 +2,6 @@
 
 <%= render partial: "teacher_skills", locals: {teacher: current_user} %>
 
-<% @pending_requests = current_user.connection_requested? %>
 <% if @pending_requests %>
   <% @pending_requests.each do |request| %>
     <%= "You have a connection request from #{request.student.first_name}" %>

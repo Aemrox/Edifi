@@ -2,7 +2,7 @@ class Scheduler
 
   def self.top_five_options(params, connection)
     options = self.parsed_params(params)
-    lesson_array = self.generate_time_slots(options[:date], options[:length], connection)
+    lesson_array = self.generate_time_slots(options[:date], options[:length], connection, options[:skill])
     lesson_array = self.remove_conflicts(lesson_array)
     lesson_array = self.sort_by_time_choice(options[:requested_time],lesson_array)
     lesson_array[0..4]
@@ -23,11 +23,11 @@ class Scheduler
     lesson_array.reject{|lesson| !lesson.valid?}
   end
 
-  def self.generate_time_slots(date, length, connection)
+  def self.generate_time_slots(date, length, connection, skill)
     start_time, end_time = work_hours(date)
     lesson_slots = []
     while (start_time + length) < end_time do
-      lesson_slots << Lesson.new(connection: connection, start_time: start_time, end_time: (start_time + length))
+      lesson_slots << Lesson.new(connection: connection, skill: skill, start_time: start_time, end_time: (start_time + length))
       start_time += 15.minutes
     end
     lesson_slots
@@ -47,6 +47,7 @@ class Scheduler
     {
       date: date,
       length: params["length"].to_i.minutes,
+      skill: Skill.find(params["skill"]),
       requested_time: Time.new(date.year, date.month, date.day, hour, minute)
     }
   end

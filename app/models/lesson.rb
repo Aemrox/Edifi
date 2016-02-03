@@ -1,6 +1,8 @@
 class Lesson < ActiveRecord::Base
   belongs_to :connection
+  belongs_to :skill
   validate :no_schedule_conflict
+
 
   def date_range
     self.start_time..self.end_time
@@ -18,7 +20,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def lesson_title
-    "#{self.connection.teacher.user_name} teaching #{self.connection.student.user_name} #{self.connection.skill.name}"
+    "#{self.connection.teacher.user_name} teaching #{self.connection.student.user_name} #{self.skill.name}"
   end
 
   def title(current_user)
@@ -36,6 +38,8 @@ class Lesson < ActiveRecord::Base
   def no_schedule_conflict
     check_schedule(:student) && check_schedule(:teacher)
   end
+
+
 
   def check_schedule(party)
     if party == :student

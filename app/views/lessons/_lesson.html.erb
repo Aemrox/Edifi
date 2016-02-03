@@ -1,0 +1,8 @@
+<div class="list-group-item">
+<h5>  <%=  lesson.title(current_user)%></h5>
+<ul>
+  <li> Starts: <%= lesson.start_time.strftime("%m/%d/%Y, %H:%M") %>,
+       Ends: <%= lesson.end_time.strftime("%m/%d/%Y, %H:%M") %>
+   </li>
+</ul>
+</div>

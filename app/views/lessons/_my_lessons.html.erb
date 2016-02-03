@@ -1,0 +1,6 @@
+<% if current_user.approved_lessons.length > 0 %>
+<div class="list-group">
+  <h4 class="list-group-item" >Lessons:</h4>
+  <%= render current_user.approved_lessons %>
+</div>
+<% end %>
