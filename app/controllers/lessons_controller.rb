@@ -17,7 +17,6 @@ class LessonsController < ApplicationController
   end
 
   def create
-    binding.pry
     connection = Connection.find(lesson_params[:connection])
     @lesson = Lesson.create(connection: connection, start_time: lesson_params[:start_time], end_time: lesson_params[:end_time])
     respond_to do |format|

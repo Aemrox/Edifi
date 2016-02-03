@@ -3,6 +3,5 @@ var html = "";
   html += "<%= j render partial: 'lessons/lesson_button', locals: {lesson: lesson} %>"
 <%end%>
 
-debugger;
-
-$('#lesson_button_group.inner').replaceWith(html)
+$('#lesson_button_group').empty()
+$('#lesson_button_group').append(html)
