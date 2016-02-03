@@ -73,8 +73,12 @@ class User < ActiveRecord::Base
      return conversations
   end
 
-  def  sender?(conversation)
+  def sender?(conversation)
     !!(conversation.sender == self)
+  end
+
+  def recipient?(conversation)
+    !!(conversation.recipient == self)
   end
 
 end
