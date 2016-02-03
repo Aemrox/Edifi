@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   end
 
   def homepage
-
+    @user = current_user
+    @skill = Skill.new
   end
 
   def teacherize
