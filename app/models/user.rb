@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def connection_requested?
-    @pending_requests = Connection.where(:teacher_id=>self.id, :approved => false)
+    Connection.where(:teacher_id=>self.id, :approved => false)
   end
 
   def connected_and_approved?(user)
@@ -46,16 +46,34 @@ class User < ActiveRecord::Base
   end
 
   def all_approved_lessons
-    (self.lessons + self.appointments).map{|lesson| lesson if lesson.approved}.compact
+    self.approved_appointments + self.approved_lessons
+  end
+
+
+  def approved_teachers
+    Connection.where(:student_id=>self.id, :approved => true).map{|connection| connection.teacher}
+  end
+
+  def unapproved_teachers
+    Connection.where(:student_id=>self.id, :approved => false).map{|connection| connection.teacher}
+  end
+
+  def approved_lessons
+    self.lessons.map{|lesson| lesson if lesson.approved}.compact
+  end
+
+  def approved_appointments
+    self.appointments.map{|appointment| appointment if appointment.approved}.compact
   end
 
   def pending_lesson_requests
-    self.appointments.map{|lesson| lesson unless lesson.approved}
+    self.appointments.map{|lesson| lesson unless lesson.approved}.compact
   end
 
   def unapproved_lesson_requests
-    self.lessons.map{|lesson| lesson unless lesson.approved}
+    self.lessons.map{|lesson| lesson unless lesson.approved}.compact
   end
+
 
   def name
     (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name

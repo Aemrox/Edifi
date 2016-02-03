@@ -21,6 +21,8 @@ class UsersController < ApplicationController
   def homepage
     @user = current_user
     @skill = Skill.new
+    @pending_requests = current_user.connection_requested?
+
   end
 
   def teacherize
