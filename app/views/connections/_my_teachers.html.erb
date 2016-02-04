@@ -1,5 +1,5 @@
+<h2>My Teachers</h2>
 <% if current_user.teachers.length > 0 %>
-  <h2>My Teachers</h2>
   <div class="list-group">
     <h4 class="list-group-item">Teachers:</h2>
     <% current_user.approved_teachers.each do |teacher| %>
@@ -8,10 +8,12 @@
       </div>
   <% end %>
 </div>
+<% else %>
+  <p>You have no teachers, go <%= link_to "learn", subjects_path %> some stuff!</p>
 <% end %>
 <hr>
 <h2>Pending Requests</h2>
-<% if current_user.teachers.length >0 %>
+<% if current_user.unapproved_teachers.length >0 %>
   <div class="list-group">
     <% current_user.unapproved_teachers.each do |teacher| %>
       <div class="list-group-item"><%= link_to "#{teacher.name}", teacher %> -

@@ -11,6 +11,7 @@ class LessonsController < ApplicationController
     binding.pry
     teacher_id = pull_user_id_from_url
     @connection = Connection.where("student_id = ?", current_user.id).where("teacher_id = ?", teacher_id).first
+    binding.pry
     @lessons = Scheduler.top_five_options(params, @connection)
     respond_to do |format|
       format.js{}

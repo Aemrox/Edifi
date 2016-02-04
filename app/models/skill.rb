@@ -4,6 +4,7 @@ class Skill < ActiveRecord::Base
 
 
   validates_uniqueness_of :name
+  validates_presence_of :subject_id
 
   belongs_to :subject
   has_many :teacher_skills

@@ -1,5 +1,17 @@
 puts "Starting"
 
+Conversation.destroy_all
+Lesson.destroy_all
+Connection.destroy_all
+TeacherSkill.destroy_all
+Skill.destroy_all
+Subject.destroy_all
+User.destroy_all
+
+
+
+
+
 adam = User.new(user_name: "Adam", email: "Adam@may.com",
   password: "123", password_confirmation: "123")
 puts "User 1 confirmed" if adam.save
