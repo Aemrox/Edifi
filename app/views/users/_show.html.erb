@@ -13,7 +13,6 @@
 
 <% if @user.teacher? %>
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
-  <h3> <%= link_to "View My Calendar", {controller: "users", action: "calendar", id: @user.id}, class: "btn btn-primary" %></h3>
 
    <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
