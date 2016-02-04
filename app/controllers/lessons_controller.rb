@@ -10,6 +10,7 @@ class LessonsController < ApplicationController
   def render_options
     teacher_id = pull_user_id_from_url
     @connection = Connection.where("student_id = ?", current_user.id).where("teacher_id = ?", teacher_id).first
+    binding.pry
     @lessons = Scheduler.top_five_options(params, @connection)
     respond_to do |format|
       format.js{}
@@ -39,7 +40,7 @@ class LessonsController < ApplicationController
   private
   def pull_user_id_from_url
     url = @_request.env["HTTP_REFERER"]
-    url.match(/users\/(\d)\//)[1]
+    url.match(/users\/(\d+)\/?/)[1]
   end
 
   def lesson_params

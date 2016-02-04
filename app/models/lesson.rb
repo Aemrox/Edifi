@@ -3,6 +3,8 @@ class Lesson < ActiveRecord::Base
   belongs_to :skill
   validate :no_schedule_conflict
 
+  validates_presence_of :skill_id, :connection_id
+
 
   def date_range
     self.start_time..self.end_time
