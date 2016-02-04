@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
   has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
 
-
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user
@@ -51,6 +50,9 @@ class User < ActiveRecord::Base
     self.approved_appointments + self.approved_lessons
   end
 
+  def approved_students
+    Connection.where(:teacher_id=>self.id, :approved => true).map{|connection| connection.student}
+  end
 
   def approved_teachers
     Connection.where(:student_id=>self.id, :approved => true).map{|connection| connection.teacher}
@@ -76,7 +78,6 @@ class User < ActiveRecord::Base
     self.lessons.map{|lesson| lesson unless lesson.approved}.compact
   end
 
-
   def name
     (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
   end
@@ -98,5 +99,4 @@ class User < ActiveRecord::Base
   def recipient?(conversation)
     !!(conversation.recipient == self)
   end
-
 end
