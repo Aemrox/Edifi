@@ -13,8 +13,39 @@
 
 <% if @user.teacher? %>
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
-  <h3> <%= link_to "View My Calendar", {controller: "users", action: "calendar", id: @user.id}, class: "btn btn-primary" %></h3>
+
+   <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    View My Calendar
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><%= @user.name %>'s Calendar</h4>
+        </div>
+        <div class="modal-body">
+
+          <%= render "lessons/lesson_scheduler" %>
+
+          <div id="calendar">
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <%end%>
+
 
 <% if logged_in? && @user.id != current_user.id %>
 
