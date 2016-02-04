@@ -21,7 +21,9 @@ class ConnectionsController < ApplicationController
   def update
     @connection = Connection.find(params[:id])
     @connection.approved = true
-    @connection.save
+    if @connection.save && @connection.student.teacher?
+        Connection.create_reciprocal_connection(@connection)
+    end
     redirect_to homepage_path
   end
 

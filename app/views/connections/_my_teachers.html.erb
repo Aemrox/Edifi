@@ -12,7 +12,7 @@
   <p>You have no teachers, go <%= link_to "learn", subjects_path %> some stuff!</p>
 <% end %>
 <hr>
-<h2>Pending Requests</h2>
+<h2>My Pending Requests to Teachers</h2>
 <% if current_user.unapproved_teachers.length >0 %>
   <div class="list-group">
     <% current_user.unapproved_teachers.each do |teacher| %>

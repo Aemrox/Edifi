@@ -8,10 +8,8 @@ class LessonsController < ApplicationController
   end
 
   def render_options
-    binding.pry
     teacher_id = pull_user_id_from_url
     @connection = Connection.where("student_id = ?", current_user.id).where("teacher_id = ?", teacher_id).first
-    binding.pry
     @lessons = Scheduler.top_five_options(params, @connection)
     respond_to do |format|
       format.js{}
@@ -35,6 +33,16 @@ class LessonsController < ApplicationController
     @lesson.save
     respond_to do |format|
       format.js {}
+    end
+  end
+
+  def reject
+    @lesson = Lesson.find(params[:id])
+    @student = @lesson.connection.student
+    Lesson.destroy(params[:id])
+    binding.pry
+    respond_to do |format|
+      format.js
     end
   end
 

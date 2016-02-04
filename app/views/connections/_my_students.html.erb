@@ -1,5 +1,5 @@
-<% if current_user.approved_students.length > 0 %>
 <h2>My Students</h2>
+<% if current_user.approved_students.length > 0 %>
   <div class="list-group">
   <h4 class="list-group-item">Students:</h2>
   <% current_user.approved_students.each do |student| %>
@@ -8,4 +8,20 @@
     </div>
   <% end %>
   </div>
+<% else %>
+<p>
+  You currently have no students
+</p>
+<% end %>
+<hr>
+<h2>My Teaching Requests</h2>
+<% if @pending_requests.length >0 %>
+  <% @pending_requests.each do |request| %>
+    <%= "You have a connection request from #{request.student.name}" %>
+    <%= button_to "Approve!", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true}, class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+<p>
+  You have no new requests
+</p>
 <% end %>

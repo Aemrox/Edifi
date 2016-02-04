@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/lessons/json', to: 'lessons#lesson_json'
   post '/lessons/render_options', to: 'lessons#render_options'
   post '/lessons/:id/approve', to: 'lessons#approve'
+  post '/lessons/:id/reject', to: 'lessons#reject'
   resources :lessons, only: [:create, :show, :update, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,2 +1,4 @@
-$('#appointment-<%=@lesson.id%>.inner').remove()
+$('#appointment-<%=@lesson.id%>').empty()
 $('#appointment-<%=@lesson.id%>').append("<p>Lesson approved! </p>")
+$('#my_appointments').empty()
+$('#my_appointments').append("<%= j render 'lessons/my_appointments' %>")
