@@ -40,7 +40,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @student = @lesson.connection.student
     Lesson.destroy(params[:id])
-    binding.pry
+    # binding.pry
     respond_to do |format|
       format.js
     end
