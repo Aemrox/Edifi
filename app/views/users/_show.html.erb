@@ -26,33 +26,7 @@
     <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
   </div>
 
-   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarModal">
-    View My Calendar
-  </button>
-  <!-- Modal -->
-  <div class="modal fade bs-example-modal-lg" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="calendarModalLabel"><%= @user.name %>'s Calendar</h4>
-        </div>
-        <div class="modal-body">
-
-          <%= render "lessons/lesson_scheduler" %>
-
-          <div id="calendar">
-
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<%= render partial: "users/calendar_modal" %>
 
 <%end%>
 

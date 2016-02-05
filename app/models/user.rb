@@ -21,6 +21,16 @@ class User < ActiveRecord::Base
     user.authenticate(password) if user
   end
 
+  def name
+    (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
+  end
+
+  ##Student/Teacher/Connection Methods
+
+  def teacher?
+    !self.skills.empty?
+  end
+
   def self.teachers
     self.all.map{|user| user if user.teacher?}
   end
@@ -46,10 +56,6 @@ class User < ActiveRecord::Base
     self.connected?(user.id) && user.approval_status(self.id)
   end
 
-  def all_approved_lessons
-    self.approved_appointments + self.approved_lessons
-  end
-
   def approved_students
     Connection.where(:teacher_id=>self.id, :approved => true).map{|connection| connection.student}
   end
@@ -60,6 +66,17 @@ class User < ActiveRecord::Base
 
   def unapproved_teachers
     Connection.where(:student_id=>self.id, :approved => false).map{|connection| connection.teacher}
+  end
+
+  #Lessons and Appointments Methods
+
+  def future_approved(a_or_l)
+    a_or_l == :lesson ? schedule = self.approved_lessons : schedule = self.approved_appointments
+    schedule.map{|lesson| lesson if lesson.start_time >= Time.now}.compact || []
+  end
+
+  def all_approved_lessons
+    self.approved_appointments + self.approved_lessons
   end
 
   def approved_lessons
@@ -78,13 +95,7 @@ class User < ActiveRecord::Base
     self.lessons.map{|lesson| lesson unless lesson.approved}.compact
   end
 
-  def name
-    (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
-  end
-
-  def teacher?
-    !self.skills.empty?
-  end
+  #Messaing Methods
 
   def conversations
      conversations = self.out_convos
@@ -99,6 +110,13 @@ class User < ActiveRecord::Base
   def recipient?(conversation)
     !!(conversation.recipient == self)
   end
+
+  def unread_message_num
+    messages = self.conversations.map{|conversation| conversation.messages}
+    messages.empty? ? messages.inject {|total,message| total += 1 if !message.read} : 0
+  end
+
+  #Availability Methods
 
   def display_availability
     #Sample Availability "Sunday 8:00 - 20:00//Monday 9:00 - 17:00"

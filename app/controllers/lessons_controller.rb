@@ -49,6 +49,7 @@ class LessonsController < ApplicationController
 
   private
   def pull_user_id_from_url
+    binding.pry
     url = @_request.env["HTTP_REFERER"]
     url.match(/users\/(\d+)\/?/)[1]
   end

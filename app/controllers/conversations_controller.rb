@@ -17,6 +17,7 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     # @reciever = interlocutor(@conversation)
     @messages = @conversation.messages
+    @messages.each{|message| message.read=true}
     @message = Message.new
   end
 
