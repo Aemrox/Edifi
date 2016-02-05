@@ -1,9 +1,11 @@
 <div class="list-group">
-<% current_user.conversations.each do |conversation| %>
-   <% if current_user.sender?(conversation)%>
-    <%= link_to "#{conversation.recipient.name} - #{conversation.messages.last.body.slice(0..49)}...", conversation, type: "button", class: "list-group-item" %>
-   <% else %>
-    <%= link_to "#{conversation.sender.name} - #{conversation.messages.last.body.slice(0..49)}...", conversation, type: "button", class: "list-group-item" %>
-   <% end %>
-<% end %>
+  <% current_user.conversations.each do |conversation| %>
+    <% if conversation.messages.length > 0%>
+      <% if current_user.sender?(conversation)%>
+        <%= link_to "#{conversation.recipient.name} - #{conversation.messages.last.body.slice(0..49)}...", conversation, type: "button", class: "list-group-item" %>
+      <% else %>
+        <%= link_to "#{conversation.sender.name} - #{conversation.messages.last.body.slice(0..49)}...", conversation, type: "button", class: "list-group-item" %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

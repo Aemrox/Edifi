@@ -1,0 +1,4 @@
+var html = "<%= j render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>"
+
+$('.availability_render').empty()
+$('.availability_render').append(html)

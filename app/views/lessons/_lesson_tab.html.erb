@@ -1,5 +1,7 @@
 <% if current_user.teacher? %>
   <%= render "lessons/pending_appointments" %>
-  <%= render "lessons/my_appointments" %>
+  <div id = "my_appointments">
+    <%= render "lessons/my_appointments" %>
+  </div>
 <% end %>
 <%= render "lessons/my_lessons" %>

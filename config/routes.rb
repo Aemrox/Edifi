@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get '/users/teacherize', to: 'users#teacherize'
   get '/users/:id/calendar', to: 'users#calendar'
+  post '/users/:id/availability', to: 'users#set_availability'
+  get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
@@ -34,6 +36,7 @@ Rails.application.routes.draw do
   get '/lessons/json', to: 'lessons#lesson_json'
   post '/lessons/render_options', to: 'lessons#render_options'
   post '/lessons/:id/approve', to: 'lessons#approve'
+  post '/lessons/:id/reject', to: 'lessons#reject'
   resources :lessons, only: [:create, :show, :update, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.

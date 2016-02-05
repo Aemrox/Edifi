@@ -3,8 +3,12 @@
 <% if current_user.pending_appointment_requests.length >0 %>
   <% current_user.pending_appointment_requests.each do |appointment| %>
   <div id="appointment-<%= appointment.id %>">
-    <%= render appointment %> </div>
-    <%= button_to "Approve!", {controller: "lessons", action: "approve", method: "POST", id: appointment.id}, remote: true%>
+    <%= render appointment %>
+    <div class="row container">
+      <%= button_to "Approve!", {controller: "lessons", action: "approve", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-primary"%>
+      <%= button_to "Reject", {controller: "lessons", action: "reject", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-primary"%>
+    </div>
+  </div>
   <% end %>
 <% else %>
   <p>You have no pending appointment requests.</p><hr>

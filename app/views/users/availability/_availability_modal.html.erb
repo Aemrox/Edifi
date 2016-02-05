@@ -1,0 +1,38 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#availabilityModal">
+ Set My Availability
+</button>
+
+<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="availabilityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+ <div class="modal-dialog modal-lg" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <h4 class="modal-title" id="availabilityModalLabel"><%= @user.name %>'s Availability</h4>
+     </div>
+     <div class="modal-body">
+       <%= form_tag "/users/#{@user.id}/availability", remote: true  do%>
+         <%= label_tag(:day, "What day of the Week would you like to set?") %>
+         <%= select_tag(:day, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"])) %>
+         <%= label_tag(:start_time, "Pick a Start Time") %>
+         <%= time_select :start_time, :time, {minute_step: 15} %>
+         <%= label_tag(:end_time, "Pick a End Time") %>
+         <%= time_select :end_time, :time, {minute_step: 15} %>
+         <%= label_tag(:remove, "Not available this day") %>
+         <%= check_box_tag :remove %>
+
+         <%= submit_tag "Set Availability", class:"btn btn-primary" %>
+       <% end %>
+
+       <div class="availability_render">
+         <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
+       </div>
+
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+     </div>
+   </div>
+ </div>
+</div>

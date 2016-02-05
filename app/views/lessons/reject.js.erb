@@ -1,0 +1,4 @@
+debugger;
+$('#appointment-<%=@lesson.id%>').empty()
+var html = "<p>Lesson rejected, Let your student know why:</p> <%= j render :partial => 'messages/message_button', :locals => {:recipient => @student} %>"
+$('#appointment-<%=@lesson.id%>').append(html)

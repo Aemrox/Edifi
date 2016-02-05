@@ -15,17 +15,17 @@
   <%= render partial: "teacher_skills", locals: {teacher: @user} %>
 
    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarModal">
     View My Calendar
   </button>
 
   <!-- Modal -->
-  <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal fade bs-example-modal-lg" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel"><%= @user.name %>'s Calendar</h4>
+          <h4 class="modal-title" id="calendarModalLabel"><%= @user.name %>'s Calendar</h4>
         </div>
         <div class="modal-body">
 
@@ -38,7 +38,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -47,8 +46,11 @@
 <%end%>
 
 
-<% if logged_in? && @user.id != current_user.id %>
-
+<%if (@user.id != current_user.id) %>
   <%= render "connections" %>
-  <!-- eventually, be able to sign up for these classes and make a connection, scheduling will go here -->
+<% else %>
+  <%= render'users/availability/availability_modal'%>
 <%end%>
+<div class="availability_render">
+  <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
+</div>
