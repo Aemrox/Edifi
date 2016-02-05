@@ -1,10 +1,6 @@
 <h1> <%= @user.user_name %> </h1>
 
-<h2> Bio:</h2>
-
- <p class="photo"
-   <td> <%= image_tag @user.attachment.url %> </td>
-</p>
+<h2> Bio:</h2
 
 <p>
   <% if @user.bio%>
@@ -12,6 +8,10 @@
   <% else %>
      No Bio :(
   <% end %>
+</p>
+
+ <p class="photo"
+   <td> <%= image_tag @user.attachment.url %> </td>
 </p>
 
 
