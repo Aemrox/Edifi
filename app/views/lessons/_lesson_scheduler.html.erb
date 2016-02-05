@@ -1,17 +1,20 @@
-<div class="form group">
-  <%= form_tag '/lessons/render_options', remote: true  do%>
-    <label for = "lesson_date">Pick a date</label>
-    <input id = "lesson_date", name = "lesson[date]", type="text" data-provide='datepicker' >
-    <%= label_tag(:time, "Pick a time") %>
-    <%= time_select :lesson, :time, {minute_step: 15} %>
-    <%= label_tag(:length, "How long of a lesson?") %>
-    <%= select_tag(:length, options_for_select([["15 minutes", 15],["30 minutes", 30],["1 Hour", 60],])) %>
-    <%= label_tag(:skill, "Which skill would you like to learn?") %>
-    <%= select_tag(:skill, options_for_select(@user.skills.map{|skill| [skill.name, skill.id]})) %>
-    <%= submit_tag "See Options", class:"btn btn-primary" %>
-  <% end %>
-</div>
+<% if @user.id != current_user.id %>
+  <div class="form group">
+    <%= form_tag '/lessons/render_options', remote: true  do%>
+      <label for = "lesson_date">Pick a date</label>
+      <input id = "lesson_date", name = "lesson[date]", type="text" data-provide='datepicker' >
+      <%= label_tag(:time, "Pick a time") %>
+      <%= time_select :lesson, :time, {minute_step: 15} %>
+      <%= label_tag(:length, "How long of a lesson?") %>
+      <%= select_tag(:length, options_for_select([["15 minutes", 15],["30 minutes", 30],["1 Hour", 60],])) %>
+      <%= label_tag(:skill, "Which skill would you like to learn?") %>
+      <%= select_tag(:skill, options_for_select(@user.skills.map{|skill| [skill.name, skill.id]})) %>
 
-<div id="lesson_button_group" class = "row container">
+      <%= submit_tag "See Options", class:"btn btn-primary" %>
+    <% end %>
+  </div>
 
-</div>
+  <div id="lesson_button_group" class = "row container">
+
+  </div>
+<% end %>
