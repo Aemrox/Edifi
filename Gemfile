@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'searchkick'
+gem 'carrierwave'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
