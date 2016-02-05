@@ -29,7 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'searchkick'
+gem "fog"
 gem 'carrierwave'
+gem "figaro"
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
