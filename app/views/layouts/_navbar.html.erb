@@ -21,7 +21,7 @@
   </div>
 </header>
 
-
+<% if !logged_in? %>
     <!--Login Modal-->
   <div class="light-skin modal fade" id="loginModal" tabindex="-1" role="form" aria-hidden="true">
     <div class="modal-dialog">
@@ -38,3 +38,4 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+<% end %>

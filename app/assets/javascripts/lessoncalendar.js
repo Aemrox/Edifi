@@ -1,6 +1,5 @@
 $(function(){
   console.log("Ready!")
-  debugger;
   $('#spinner').fadeOut();
 	$('#preloader').delay(300).fadeOut('slow');
 	setTimeout(function(){$('.first-slide div:first-child').addClass('fadeInDown');},100);

@@ -8,6 +8,7 @@ class LessonsController < ApplicationController
   end
 
   def render_options
+    binding.pry
     teacher_id = pull_user_id_from_url
     @connection = Connection.where("student_id = ?", current_user.id).where("teacher_id = ?", teacher_id).first
     @lessons = Scheduler.top_five_options(params, @connection)
