@@ -1,10 +1,24 @@
-<h1>Welcome to Softskillz</h1>
-<p>Learning to spell is not one of our skillz.</p>
+    <section class="hero">
+      <div class="container">
 
-
+        <!--Hero Slider-->
+        <div class="row">
+          <div class="hero-slider">
+            <div class="slide first-slide">
+              <div class="col-lg-5 col-md-5 col-sm-5 animated">
+                <h2 style="margin-top:50px;" class="text-light text-left">Connect. Learn. Teach</h2>
+                <p>Coding. Graphic design. Desktop publishing.</p>
+                <p>There's a whole world of hard skills out there waiting for you.  With Edifi, bringing teachers and learners together has never been simpler. </p>
+                <a class="btn btn-primary" href="cs-page.html">Go to Components &amp; Styles</a>
+              </div>
+            </div>
+          </div>
+        </div><!--Close Hero Slider-->
+      </div>
+    </section><!--Close Hero-->
 
 <% if !logged_in? %>
 
-<%= render "users/form" %>
+  <%= render "users/form" %>
 
 <% end %>

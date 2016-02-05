@@ -21,13 +21,13 @@ class ApplicationController < ActionController::Base
 
   # def authenticate_owner!
   #  binding.pry
-  #    if !!Conversation.find(params[:id]) 
-  #         @current_conversation = Conversation.find(params[:id]) 
-  #         redirect_to homepage_path unless current_user.conversations.include?(@current_conversation) 
-  #   else 
+  #    if !!Conversation.find(params[:id])
+  #         @current_conversation = Conversation.find(params[:id])
+  #         redirect_to homepage_path unless current_user.conversations.include?(@current_conversation)
+  #   else
   #         @conversation = Conversation.create!(conversation_params)
   #   end
 
-  # end 
+  # end
 
 end

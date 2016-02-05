@@ -1,12 +1,12 @@
-<%= form_tag login_path %>
-<div class="user_name">
+<%= form_tag login_path, :id => "form-validation", :role => "form" %>
+<div class="form-group">
   <%= label_tag :user_name %>
-  <%= text_field_tag :user_name %>
+  <%= text_field_tag :user_name, "", placeholder: 'User Name', :class => "form-control", :id => "name3" %>
 </div>
 
-<div class="password">
+<div class="form-group">
   <%= label_tag :password %>
-  <%= password_field_tag :password %>
+  <%= password_field_tag :password, "", placeholder: 'Password', :class => "form-control", :id => "email3" %>
 </div>
 
-<%= submit_tag "Log In" %>
+<%= submit_tag "Log In", :class => "btn btn-primary" %>
