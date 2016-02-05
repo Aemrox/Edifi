@@ -1,6 +1,6 @@
 $(function(){
   console.log("Ready!")
-
+  debugger;
   $("#calendarModal").on('shown.bs.modal', function () {
     $('#calendar').fullCalendar({
       events: '/lessons/json'
