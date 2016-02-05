@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require moment
-//= modernizr.custom.js
-//= require fullcalendar
 //= require bootstrap-datepicker
 //= require bootstrap-sprockets
 //= require libs/jquery-1.11.2.min
@@ -33,4 +31,6 @@
 //= require plugins/color-switcher
 //= require landing2
 //= require jquery_ujs
+//= modernizr.custom.js
+//= require fullcalendar
 //= require_tree .
