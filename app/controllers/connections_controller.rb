@@ -13,6 +13,11 @@ class ConnectionsController < ApplicationController
         #puts failire notice
         redirect_to @teacher, notice: "Unable to make connection! Try again."
     end
+    
+
+    respond_to do |format|
+      format.html {redirect_to @teacher}
+      format.js {}
   end
 
   def edit

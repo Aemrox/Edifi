@@ -1,6 +1,6 @@
 <% if @user.teacher? && @user.no_connections_with?(current_user) %>
 
-  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}, remote: true} %>
 
 <% elsif @user.teacher? && @user.connected_and_approved?(current_user) %>
 

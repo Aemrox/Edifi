@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'searchkick'
-
+gem 'omniauth-facebook'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rails_12factor'
