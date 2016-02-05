@@ -32,7 +32,8 @@ gem 'searchkick'
 gem "fog"
 gem 'carrierwave'
 gem "figaro"
-
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'rails_12factor'

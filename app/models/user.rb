@@ -108,4 +108,12 @@ class User < ActiveRecord::Base
   def set_availability(array_of_days)
     self.availability = array_of_days.join("//")
   end
+
+  def from_omniauth(auth_hash)
+    binding.pry
+    user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+    user.name = auth_hash['info']['name']
+    user.save!
+    user
+  end
 end
