@@ -1,0 +1,8 @@
+<% if availability %>
+  <h3>My Availability</h3>
+  <ul>
+    <% availability.each do |day| %>
+      <li> <%= day %> </li>
+    <% end %>
+  </ul>
+<% end %>

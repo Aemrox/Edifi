@@ -1,7 +1,7 @@
 $(function(){
   console.log("Ready!")
 
-  $("#myModal").on('shown.bs.modal', function () {
+  $("#calendarModal").on('shown.bs.modal', function () {
     $('#calendar').fullCalendar({
       events: '/lessons/json'
     });

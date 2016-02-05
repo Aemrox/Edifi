@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   def conversations
      conversations = self.out_convos
      conversations << self.in_convos
-     return conversations
+     conversations
   end
 
   def sender?(conversation)
@@ -98,5 +98,14 @@ class User < ActiveRecord::Base
 
   def recipient?(conversation)
     !!(conversation.recipient == self)
+  end
+
+  def display_availability
+    #Sample Availability "Sunday 8:00 - 20:00//Monday 9:00 - 17:00"
+    self.availability ? self.availability.split("//") : []
+  end
+
+  def set_availability(array_of_days)
+    self.availability = array_of_days.join("//")
   end
 end

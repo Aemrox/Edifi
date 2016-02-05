@@ -43,7 +43,7 @@ class Scheduler
   def self.parsed_params(params)
     date = Time.strptime(params["lesson"]["date"], "%m/%d/%Y").to_date
     hour = params["lesson"]["time(4i)"]
-    minute = params["length"]["time(5i)"]
+    minute = params["lesson"]["time(5i)"]
     {
       date: date,
       length: params["length"].to_i.minutes,

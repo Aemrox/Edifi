@@ -40,8 +40,24 @@ class UsersController < ApplicationController
     @user = @teacher
   end
 
+  def set_availability
+    @user = User.find(params[:id])
+    params[:remove] ? availability = no_availability : availability = param_to_availability
+    new_availability = Availability.set_array(@user.display_availability,availability)
+    @user.set_availability(new_availability)
+    @user.save
+    respond_to do |format|
+      format.js {render template: "users/availability/set_availability.js.erb",
+                 layout: false}
+    end
+  end
 
-
+  def rerender_availability
+    respond_to do |format|
+      format.js {render template: "users/availability/set_availability.js.erb",
+                 layout: false}
+    end
+  end
 
   private
   def user_params
@@ -50,6 +66,14 @@ class UsersController < ApplicationController
 
   def new_teacher_params
     params.require(:user).permit(:skill_ids => [])
+  end
+
+  def param_to_availability
+    "#{params[:day]} #{params[:start_time]["time(4i)"]}:#{params[:start_time]["time(5i)"]} - #{params[:end_time]["time(4i)"]}:#{params[:end_time]["time(5i)"]}"
+  end
+
+  def no_availability
+    "#{params[:day]} Not Available"
   end
 
 
