@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="141" height="56" viewBox="0 0 141 56">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-size: 70px;
+      }
+
+      .cls-2 {
+        fill: #404354;
+        font-family: "OpenSans-Bold";
+        font-weight: bold;
+      }
+    </style>
+  </defs>
+  <text transform="translate(-2 54) scale(0.92 0.93)" class="cls-1"><tspan class="cls-2">edifi</tspan></text>
+</svg>
