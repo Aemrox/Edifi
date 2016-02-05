@@ -10,7 +10,7 @@
         <% else %>
         <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
         <% end %>
-        <li><a href="cs-page.html">Browse Subjects</a></li>
+        <li><%= link_to "Browse subjects", subjects_path %></li>
         <li>
           <%= form_tag skillsearch_path, class: "form-inline" do%>
             <%= text_field_tag :query, nil, placeholder: "Search for Skills",class: "form-control input-sm" %>
