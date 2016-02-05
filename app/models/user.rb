@@ -111,6 +111,11 @@ class User < ActiveRecord::Base
     !!(conversation.recipient == self)
   end
 
+  def unread_message_num
+    messages = self.conversations.map{|conversation| conversation.messages}
+    messages.empty? ? messages.inject {|total,message| total += 1 if !message.read} : 0
+  end
+
   #Availability Methods
 
   def display_availability
