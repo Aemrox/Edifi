@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     else
       render :new, notice: "failure!"
     end
+
   end
 
   def show
@@ -31,8 +32,13 @@ class UsersController < ApplicationController
   end
 
   def becometeacher
+    binding.pry
     current_user.skill_ids = new_teacher_params[:skill_ids]
-    redirect_to homepage_path, notice: "New Skills Added!"
+    respond_to do |format|
+      format.js {render template: "skills/create.js.erb",
+                 layout: false}
+    end
+    # redirect_to homepage_path, notice: "New Skills Added!"
   end
 
   def calendar

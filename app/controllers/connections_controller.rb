@@ -4,15 +4,20 @@ class ConnectionsController < ApplicationController
   end
 
   def create
+    binding.pry
     @teacher = User.find(connection_params[:teacher_id])
     @connection = Connection.new(connection_params)
-    if @connection.save
-        redirect_to @teacher, notice: "Connection added!"
-        #delete connection_request and display the student whos connection you added.
-    else
-        #puts failire notice
-        redirect_to @teacher, notice: "Unable to make connection! Try again."
+    @connection.save
+    respond_to do |format|
+      format.js{}
     end
+    # if @connection.save
+    #     redirect_to @teacher, notice: "Connection added!"
+    #     #delete connection_request and display the student whos connection you added.
+    # else
+    #     #puts failire notice
+    #     redirect_to @teacher, notice: "Unable to make connection! Try again."
+    # end
   end
 
   def edit

@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     !self.connected?(user.id) && !user.connected?(self.id)
   end
 
+  def is_my_teacher?(teacher_id)
+    !!Connection.find_by(:student_id=>self.id, :teacher_id=>teacher_id)
+  end
+
   def approval_status(teacher_id)
     status = Connection.find_by(:student_id=>self.id, :teacher_id=>teacher_id)
     status.approved
