@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-
-
-
-
-
-
+  match '/pusher/auth' => 'pusher#auth', via: :post
   root "home#index"
 
   get 'home/index'
@@ -37,6 +32,7 @@ Rails.application.routes.draw do
   post '/lessons/render_options', to: 'lessons#render_options'
   post '/lessons/:id/approve', to: 'lessons#approve'
   post '/lessons/:id/reject', to: 'lessons#reject'
+  get '/lessons/:id/chat', to: 'lessons#chat'
   resources :lessons, only: [:create, :show, :update, :delete]
 
   # The priority is based upon order of creation: first created -> highest priority.

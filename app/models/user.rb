@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
   has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
   mount_uploader :attachment, AvatarUploader
+
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user
@@ -72,7 +73,7 @@ class User < ActiveRecord::Base
 
   def future_approved(a_or_l)
     a_or_l == :lesson ? schedule = self.approved_lessons : schedule = self.approved_appointments
-    schedule.map{|lesson| lesson if lesson.start_time >= Time.now}.compact || []
+    schedule.map{|lesson| lesson if (lesson.end_time + 10.minutes) >= Time.now}.compact || []
   end
 
   def all_approved_lessons

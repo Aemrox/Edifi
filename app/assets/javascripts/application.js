@@ -33,4 +33,7 @@
 //= require jquery_ujs
 //= modernizr.custom.js
 //= require fullcalendar
+//= require pusher
+//= require simplepeer
+//= require hark
 //= require_tree .

@@ -39,6 +39,15 @@ gem 'rails_12factor'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-datepicker-rails'
+
+
+#FOR VIDEO STUFF
+gem 'slim-rails'
+gem 'simple_form', '~> 3.1.0.rc2'                      # Bootstrap 3 support
+gem 'pusher'
+gem 'awesome_print'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

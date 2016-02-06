@@ -4,5 +4,6 @@
   <li> Starts: <%= lesson.start_time.strftime("%m/%d/%Y, %H:%M") %>,
        Ends: <%= lesson.end_time.strftime("%m/%d/%Y, %H:%M") %>
    </li>
+   <%= link_to "See the Lesson", lesson, class: "btn btn-primary" %>
 </ul>
 </div>

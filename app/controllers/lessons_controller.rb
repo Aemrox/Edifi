@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
   end
 
   def render_options
-    binding.pry
+    # binding.pry
     teacher_id = pull_user_id_from_url
     @connection = Connection.where("student_id = ?", current_user.id).where("teacher_id = ?", teacher_id).first
     @lessons = Scheduler.top_five_options(params, @connection)
@@ -47,9 +47,13 @@ class LessonsController < ApplicationController
     end
   end
 
+  def chat
+    render 'chats/chat_page'
+  end
+
   private
   def pull_user_id_from_url
-    binding.pry
+    # binding.pry
     url = @_request.env["HTTP_REFERER"]
     url.match(/users\/(\d+)\/?/)[1]
   end

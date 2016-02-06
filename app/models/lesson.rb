@@ -10,6 +10,10 @@ class Lesson < ActiveRecord::Base
     self.start_time..self.end_time
   end
 
+  def chat_window
+    (self.start_time - 10.minutes)..(self.end_time + 10.minutes)
+  end
+
   def to_moment(current_user)
     json = {
       id: self.id,
@@ -19,6 +23,10 @@ class Lesson < ActiveRecord::Base
       url: "/lessons/#{self.id}",
       overlap: false
     }
+  end
+
+  def now
+    self.chat_window.cover?(Time.now)
   end
 
   def lesson_title

@@ -1,11 +1,14 @@
  <% if current_user == @lesson.connection.teacher || current_user == @lesson.connection.student %>
    <% if @lesson.approved %>
-    <h3><%= @lesson.title %></h3>
+    <h3><%= @lesson.title(current_user) %></h3>
     <h5>Student: <%= @lesson.connection.student.name %></h5>
     <h5>Teacher: <%= @lesson.connection.teacher.name %></h5>
     <h5>Skill: <%= @lesson.skill.name %> </h5>
     <h5>Starts: <%= @lesson.start_time.strftime("%m/%d/%Y, %H:%M") %></h5>
     <h5>Ends: <%= @lesson.end_time.strftime("%m/%d/%Y, %H:%M") %></h5>
+    <% if @lesson.now %>
+      <%= link_to "Go To Live Chat!", "#{@lesson.id}/chat", class: "btn btn-primary" %>
+    <% end %>
   <% else %>
     <h5>This lesson has not yet been approved. Contact your <%= link_to "Teacher", @lesson.connection.teacher %> to find out more.
     </h5>
