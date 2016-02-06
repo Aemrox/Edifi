@@ -1,0 +1,7 @@
+debugger;
+
+$('#user_skills').empty()
+$('#user_skills').append("<%= j render partial: 'users/skills/teacher_skills', locals: {teacher: current_user} %>")
+
+$('#skills_selector').empty()
+$('#skills_selector').append("<%= j render partial: 'users/skills/skill_selector', locals: {user: current_user}%>")

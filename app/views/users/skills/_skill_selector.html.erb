@@ -1,0 +1,5 @@
+
+  <%= form_for user, remote: true, url: {controller: 'users', :action => 'becometeacher'}, method: :post do |f|%>
+    <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name, { checked: user.skills.map(&:to_param) }  ) %>
+    <%= f.submit "Teach Things!", class: "btn btn-primary" %>
+  <% end %>

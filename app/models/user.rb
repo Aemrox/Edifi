@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
   has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
   mount_uploader :attachment, AvatarUploader
+  
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user
@@ -41,6 +42,10 @@ class User < ActiveRecord::Base
 
   def no_connections_with?(user)
     !self.connected?(user.id) && !user.connected?(self.id)
+  end
+
+  def is_my_teacher?(teacher_id)
+    !!Connection.find_by(:student_id=>self.id, :teacher_id=>teacher_id)
   end
 
   def approval_status(teacher_id)
