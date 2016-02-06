@@ -15,17 +15,18 @@ class SessionsController < ApplicationController
       end
   end
 
+
+
   def omniauthcreate
-  begin
     @user = User.from_omniauth(request.env['omniauth.auth'])
     session[:user_id] = @user.id
-    flash[:success] = "Welcome, #{@user.name}!"
-  rescue
-    flash[:warning] = "There was an error while trying to authenticate you..."
+     redirect_to homepage_path, notice: "You've been logged in"
+  
   end
+  
+  def auth_failure
   redirect_to root_path
-end
-
+  end
 
 
   def destroy
