@@ -9,17 +9,14 @@ class SkillsController < ApplicationController
     respond_to do |format|
       format.js{}
     end
-
-    # if params["original_page"].include?("teacherize")
-    #   # binding.pry
-    #   redirect_to '/users/teacherize'
-    # else
-    #   redirect_to skill
-    # end
   end
 
   def index
     @skills = Skill.all
+    respond_to do |format|
+      format.html{}
+      format.json{render json: @skills.map{|skill| skill.search_index_json}.compact.flatten}
+    end
   end
 
   def show

@@ -69,6 +69,11 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
+  def teachers_json
+    @teachers = User.all.map{|user| user.search_index_json if user.teacher?}.compact.flatten
+    render json: @teachers
+  end
+
   private
   def user_params
     params.require(:user).permit(:user_name, :email, :attachment, :password, :password_confirmation, :bio, :first_name, :last_name)

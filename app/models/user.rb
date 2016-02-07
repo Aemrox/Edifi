@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
   end
 
+  def search_index_json
+    [{value: self.name, data:"/users/#{self.id}"}]
+  end
+
   ##Student/Teacher/Connection Methods
 
   def teacher?

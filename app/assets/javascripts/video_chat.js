@@ -74,7 +74,7 @@ $(function() {
           }
         }
       }
-      debugger;
+      debugger;  
       channel.bind('pusher:subscription_succeeded', lookForPeers);
       debugger;
       function gotRemoteVideo(userId, userName, stream) {

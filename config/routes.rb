@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/users/teacherize', to: 'users#teacherize'
   get '/users/:id/calendar', to: 'users#calendar'
   get '/userjson', to: 'users#current_user_json'
+  get '/teachersjson', to: 'users#teachers_json'
   post '/users/:id/availability', to: 'users#set_availability'
   get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
