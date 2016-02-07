@@ -1,0 +1,60 @@
+<div class="wrapper">
+
+<!-- Start Message Panel-->
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-inline" id="send-message" role="form">
+        <div class="form-group">
+          <input class="form-control" id="message" placeholder="Say something nice">
+        </div>
+        <button type="submit" class="btn btn-success">Send Message</button>
+      </form>
+    </div>
+  </div>
+<!-- End Message Panel-->
+
+  <div class="container">
+    <!-- Start Welcome Modal Panel-->
+    <div class="modal fade" id="name-prompt">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true"> &times;</span>
+              <span class=sr-only> Close </span>
+            </button>
+            <h4 class = "modal-title"> Welcome to the Lesson Chat!</h4>
+          </div>
+          <div class="modal-body">
+            Press Ok to get started.
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Welcome Modal Panel-->
+
+    <div id="chat" data-api-key= '<%=Pusher.key%>'  data-auth-endpoint= "/pusher/auth">
+
+    </div>
+    <br>
+
+    <div id="remoteVideos">
+
+    </div>
+
+    <ul id ="allVideos" class="list-inline">
+      <li>
+        <video id = "localVideo" autoplay=true muted="muted">
+
+        </video>
+      </li>
+    </ul>
+
+    <dl class="dl-horizontal" id="messages">
+
+    </dl>
+  </div>
+</div>

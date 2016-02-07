@@ -30,17 +30,20 @@ $(function() {
 
   $modal.find('button').click(function(e) {
     e.preventDefault();
-    name = $modal.find('input').val().trim();
+    // name = $modal.find('input').val().trim();
+    //
+    // if (name === '') return;
 
-    if (name === '') return;
+    var currentUser = {};
 
     $modal.modal('hide');
-
-    var currentUser = {
-      name: name,
-      id: guid(),
-      stream: undefined
-    };
+    $.getJSON( "../../userjson", function( data ) {
+      currentUser = {
+        name: data.user_name,
+        id: guid(),
+        stream: undefined
+      };
+    });
 
     navigator.getUserMedia(mediaOptions, function(stream) {
       currentUser.stream = stream;
@@ -71,9 +74,9 @@ $(function() {
           }
         }
       }
-
+      debugger;
       channel.bind('pusher:subscription_succeeded', lookForPeers);
-
+      debugger;
       function gotRemoteVideo(userId, userName, stream) {
         var video = $("<video autoplay data-user-id='" + userId + "'/>");
         video[0].src = window.URL.createObjectURL(stream);
@@ -130,7 +133,6 @@ $(function() {
       function initiateConnection(peerUserId, peerUserName) {
         return setupPeer(peerUserId, peerUserName, true);
       };
-
       channel.bind('client-signal-' + currentUser.id, function(signal) {
         var peer = peers[signal.userId];
 
@@ -143,7 +145,6 @@ $(function() {
         });
         peer.signal(signal.data)
       });
-
       var speech = hark(currentUser.stream);
 
       speech.on('speaking', function() {

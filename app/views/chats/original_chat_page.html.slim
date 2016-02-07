@@ -11,8 +11,7 @@
             form#send-message.navbar-form.navbar-right
               .form-group
                 input.form-control#message
-              '
-              button.btn.btn-success type='submit' Send Message
+                button.btn.btn-success type='submit' Send Message
 
       .container
         #name-prompt.modal.fade
@@ -23,9 +22,10 @@
                   button.close type="button" data-dismiss="modal"
                     span aria-hidden="true" &times;
                     span.sr-only Close
-                  h4.modal-title What's your name?
+                  h4.modal-title Welcome to the Lesson Chat! 
                 .modal-body
-                  input.form-control autofocus=true
+                  'Press Ok to get started.
+                  / input.form-control autofocus=true
                 .modal-footer
                   button.btn.btn-success type='submit' Ok
 
