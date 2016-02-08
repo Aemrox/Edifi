@@ -43,129 +43,129 @@ $(function() {
         id: guid(),
         stream: undefined
       };
-    });
-
-    navigator.getUserMedia(mediaOptions, function(stream) {
-      currentUser.stream = stream;
-      var video = $('#localVideo')[0];
-      video.src = window.URL.createObjectURL(stream);
-
-      start();
-    }, function() {});
+      navigator.getUserMedia(mediaOptions, function(stream) {
+        currentUser.stream = stream;
+        var video = $('#localVideo')[0];
+        video.src = window.URL.createObjectURL(stream); 
+        start();
+      }, function() {});
 
 
-    function start() {
-      var pusher = new Pusher($('#chat').data().apiKey, {
-        authEndpoint: '/pusher/auth',
-        auth: {
-          params: currentUser
-        }
-      });
+      function start() {
+        var pusher = new Pusher($('#chat').data().apiKey, {
+          authEndpoint: '/pusher/auth',
+          auth: {
+            params: currentUser
+          }
+        });
 
-      //Place channel ID here to modify the pusher channel name
-      var channel = pusher.subscribe('presence-chat');
-      var peers = {};
+        //Place channel ID here to modify the pusher channel name
+        var channelID = 'presence-chat-' + window.location.href.match(/lessons\/(\d+)\/?/)[1]
+        var channel = pusher.subscribe(channelID);
+        var peers = {};
 
-      function lookForPeers() {
-        for (var userId in channel.members.members) {
-          if (userId != currentUser.id) {
-            var member = channel.members.members[userId];
+        function lookForPeers() {
+          for (var userId in channel.members.members) {
+            if (userId != currentUser.id) {
+              var member = channel.members.members[userId];
 
-            peers[userId] = initiateConnection(userId, member.name)
+              peers[userId] = initiateConnection(userId, member.name)
+            }
           }
         }
-      }
-      channel.bind('pusher:subscription_succeeded', lookForPeers);
-      function gotRemoteVideo(userId, userName, stream) {
-        var video = $("<video autoplay data-user-id='" + userId + "'/>");
-        video[0].src = window.URL.createObjectURL(stream);
-        $('#remoteVideos').append(video);
+        channel.bind('pusher:subscription_succeeded', lookForPeers);
+        function gotRemoteVideo(userId, userName, stream) {
+          var video = $("<video autoplay data-user-id='" + userId + "'/>");
+          video[0].src = window.URL.createObjectURL(stream);
+          debugger;
+          $('#remoteVideos').append(video);
 
-        var preview = $("<li data-user-id='" + userId + "'>");
-        preview.append("<video autoplay/>");
-        preview.append("<div class='name'>" + userName + "</div></li>")
-        preview.find('video')[0].src = window.URL.createObjectURL(stream);
+          var preview = $("<li data-user-id='" + userId + "'>");
+          preview.append("<video autoplay/>");
+          preview.append("<div class='name'>" + userName + "</div></li>")
+          preview.find('video')[0].src = window.URL.createObjectURL(stream);
 
-        $('#allVideos').append(preview);
-      }
-
-      function appendMessage(name, message) {
-        $messages.append('<dt>' + name + '</dt>');
-        $messages.append('<dd>' + message + '</dd>');
-      }
-
-      function close(userId, name) {
-        var peer = peers[userId];
-        if (peer) {
-          peer.destroy();
-          peers[userId] = undefined;
+          $('#allVideos').append(preview);
         }
-        $("[data-user-id='" + userId + "']").remove();
-        appendMessage(name, '<em>Disconnected</em>');
-      }
 
-      function setupPeer(peerUserId, peerUserName, initiator) {
-        var peer = new SimplePeer({ initiator: initiator, stream: currentUser.stream, trickle: false });
+        function appendMessage(name, message) {
+          $messages.append('<dt>' + name + '</dt>');
+          $messages.append('<dd>' + message + '</dd>');
+        }
 
-        peer.on('signal', function (data) {
-          channel.trigger('client-signal-' + peerUserId, {
-            userId: currentUser.id, userName: currentUser.name, data: data
+        function close(userId, name) {
+          var peer = peers[userId];
+          if (peer) {
+            peer.destroy();
+            peers[userId] = undefined;
+          }
+          $("[data-user-id='" + userId + "']").remove();
+          appendMessage(name, '<em>Disconnected</em>');
+        }
+
+        function setupPeer(peerUserId, peerUserName, initiator) {
+          var peer = new SimplePeer({ initiator: initiator, stream: currentUser.stream, trickle: false });
+
+          peer.on('signal', function (data) {
+            channel.trigger('client-signal-' + peerUserId, {
+              userId: currentUser.id, userName: currentUser.name, data: data
+            });
           });
+
+          peer.on('stream', function(stream) { gotRemoteVideo(peerUserId, peerUserName, stream) });
+          peer.on('close', function() { close(peerUserId, peerUserName) });
+          $(window).on('beforeunload', function() { close(peerUserId, peerUserName) });
+
+          peer.on('message', function (data) {
+            if (data == '__SPEAKING__') {
+              $('#remoteVideos video').hide();
+              $("#remoteVideos video[data-user-id='" + peerUserId + "']").show();
+            } else {
+              appendMessage(peerUserName, data);
+            }
+          });
+
+          return peer;
+        }
+
+        function initiateConnection(peerUserId, peerUserName) {
+          return setupPeer(peerUserId, peerUserName, true);
+        };
+        channel.bind('client-signal-' + currentUser.id, function(signal) {
+          var peer = peers[signal.userId];
+
+          if (peer === undefined) {
+            peer = setupPeer(signal.userId, signal.userName, false);
+          }
+
+          peer.on('ready', function() {
+            appendMessage(signal.userName, '<em>Connected</em>');
+          });
+          peer.signal(signal.data)
         });
+        var speech = hark(currentUser.stream);
 
-        peer.on('stream', function(stream) { gotRemoteVideo(peerUserId, peerUserName, stream) });
-        peer.on('close', function() { close(peerUserId, peerUserName) });
-        $(window).on('beforeunload', function() { close(peerUserId, peerUserName) });
-
-        peer.on('message', function (data) {
-          if (data == '__SPEAKING__') {
-            $('#remoteVideos video').hide();
-            $("#remoteVideos video[data-user-id='" + peerUserId + "']").show();
-          } else {
-            appendMessage(peerUserName, data);
+        speech.on('speaking', function() {
+          for (var userId in peers) {
+            var peer = peers[userId];
+            peer.send('__SPEAKING__');
           }
         });
 
-        return peer;
-      }
+        $('#send-message').submit(function(e) {
+          e.preventDefault();
+          var $input = $(this).find('input'),
+              message = $input.val();
 
-      function initiateConnection(peerUserId, peerUserName) {
-        return setupPeer(peerUserId, peerUserName, true);
-      };
-      channel.bind('client-signal-' + currentUser.id, function(signal) {
-        var peer = peers[signal.userId];
+          $input.val('');
 
-        if (peer === undefined) {
-          peer = setupPeer(signal.userId, signal.userName, false);
-        }
-
-        peer.on('ready', function() {
-          appendMessage(signal.userName, '<em>Connected</em>');
+          for (var userId in peers) {
+            var peer = peers[userId];
+            peer.send(message);
+          }
+          appendMessage(currentUser.name, message);
         });
-        peer.signal(signal.data)
-      });
-      var speech = hark(currentUser.stream);
-
-      speech.on('speaking', function() {
-        for (var userId in peers) {
-          var peer = peers[userId];
-          peer.send('__SPEAKING__');
-        }
-      });
-
-      $('#send-message').submit(function(e) {
-        e.preventDefault();
-        var $input = $(this).find('input'),
-            message = $input.val();
-
-        $input.val('');
-
-        for (var userId in peers) {
-          var peer = peers[userId];
-          peer.send(message);
-        }
-        appendMessage(currentUser.name, message);
-      });
-    }
+      }
+    });
   });
 });

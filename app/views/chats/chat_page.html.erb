@@ -1,17 +1,5 @@
 <div class="wrapper">
 
-<!-- Start Message Panel-->
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <form class="form-inline" id="send-message" role="form">
-        <div class="form-group">
-          <input class="form-control" id="message" placeholder="Say something nice">
-        </div>
-        <button type="submit" class="btn btn-success">Send Message</button>
-      </form>
-    </div>
-  </div>
-<!-- End Message Panel-->
 
   <div class="container">
     <!-- Start Welcome Modal Panel-->
@@ -35,15 +23,30 @@
       </div>
     </div>
     <!-- End Welcome Modal Panel-->
+    <div class="container">
+      <!-- Start Message Panel-->
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form class="form-inline" id="send-message" role="form">
+              <div class="form-group">
+                <input class="form-control" id="message" placeholder="Say something nice">
+              </div>
+              <button type="submit" class="btn btn-success">Send Message</button>
+            </form>
+          </div>
+        </div>
+      <!-- End Message Panel-->
 
-    <div id="chat" data-api-key= '<%=Pusher.key%>'  data-auth-endpoint= "/pusher/auth">
+      <div id="chat" data-api-key= '<%=Pusher.key%>'  data-auth-endpoint= "/pusher/auth">
 
+      </div>
+      <div class="container">
+        <div id="remoteVideos">
+
+        </div>
+      </div>
     </div>
-    <br>
 
-    <div id="remoteVideos">
-
-    </div>
 
     <ul id ="allVideos" class="list-inline">
       <li>
