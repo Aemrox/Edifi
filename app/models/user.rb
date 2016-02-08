@@ -104,12 +104,12 @@ class User < ActiveRecord::Base
     self.lessons.map{|lesson| lesson unless lesson.approved}.compact
   end
 
-  #Messaing Methods
+
 
   def conversations
-     conversations = self.out_convos
-     conversations << self.in_convos
-     conversations
+    conversations = self.out_convos
+    conversations << self.in_convos
+    conversations
   end
 
   def sender?(conversation)

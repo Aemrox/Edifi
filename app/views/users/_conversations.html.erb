@@ -3,7 +3,7 @@
   <div class="col-md-8">
     <div class="list-group">
       <% current_user.conversations.uniq.each do |conversation| %>
-        <% if conversation.messages.length > 0%>
+        <% if conversation.messages.length > 0 %>
           <% if current_user.sender?(conversation)%>
             <%= link_to(conversation, type: "button", class: "list-group-item") do %>
               <div class="row">
