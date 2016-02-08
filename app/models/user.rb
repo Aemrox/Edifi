@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
   has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
   mount_uploader :attachment, AvatarUploader
+
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user
@@ -23,6 +24,10 @@ class User < ActiveRecord::Base
 
   def name
     (self.first_name && self.last_name) ? "#{self.first_name} #{self.last_name}" : user_name
+  end
+
+  def search_index_json
+    [{value: self.name, data:"/users/#{self.id}"}]
   end
 
   ##Student/Teacher/Connection Methods
@@ -41,6 +46,10 @@ class User < ActiveRecord::Base
 
   def no_connections_with?(user)
     !self.connected?(user.id) && !user.connected?(self.id)
+  end
+
+  def is_my_teacher?(teacher_id)
+    !!Connection.find_by(:student_id=>self.id, :teacher_id=>teacher_id)
   end
 
   def approval_status(teacher_id)
@@ -72,7 +81,7 @@ class User < ActiveRecord::Base
 
   def future_approved(a_or_l)
     a_or_l == :lesson ? schedule = self.approved_lessons : schedule = self.approved_appointments
-    schedule.map{|lesson| lesson if lesson.start_time >= Time.now}.compact || []
+    schedule.map{|lesson| lesson if (lesson.end_time + 10.minutes) >= Time.now}.compact || []
   end
 
   def all_approved_lessons

@@ -17,9 +17,9 @@
 
 
 <% if @user.teacher? %>
-  <%= render partial: "teacher_skills", locals: {teacher: @user} %>
+  <%= render partial: "users/skills/teacher_skills", locals: {teacher: @user} %>
 
-  <% if @user.id == current_user.id%>
+  <% if logged_in? && @user.id == current_user.id%>
     <%= render'users/availability/availability_modal'%>
   <% end %>
   <div class="availability_render">
@@ -30,6 +30,6 @@
 
 <%end%>
 
-<%if (@user.id != current_user.id) %>
+<%if (logged_in? && @user.id != current_user.id) %>
   <%= render "connections" %>
 <%end%>

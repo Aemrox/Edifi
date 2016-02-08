@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-
-
-
-
-
-
+  match '/pusher/auth' => 'pusher#auth', via: :post
   root "home#index"
 
   get 'home/index'
@@ -19,6 +14,8 @@ Rails.application.routes.draw do
     get 'auth/failure', to: redirect('/')
   get '/users/teacherize', to: 'users#teacherize'
   get '/users/:id/calendar', to: 'users#calendar'
+  get '/userjson', to: 'users#current_user_json'
+  get '/teachersjson', to: 'users#teachers_json'
   post '/users/:id/availability', to: 'users#set_availability'
   get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
@@ -40,6 +37,7 @@ Rails.application.routes.draw do
   post '/lessons/render_options', to: 'lessons#render_options'
   post '/lessons/:id/approve', to: 'lessons#approve'
   post '/lessons/:id/reject', to: 'lessons#reject'
+  get '/lessons/:id/chat', to: 'lessons#chat'
   resources :lessons, only: [:create, :show, :update, :delete]
 end
 

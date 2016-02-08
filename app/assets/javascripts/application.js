@@ -32,5 +32,9 @@
 // require landing2
 //= require jquery_ujs
 //= modernizr.custom.js
+//= require jquery.autocomplete.js
 //= require fullcalendar
+//= require pusher
+//= require simplepeer
+//= require hark
 //= require_tree .

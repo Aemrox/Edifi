@@ -5,7 +5,7 @@
     <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
     <li role="presentation"><a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a></li>
     <li role="presentation"><a href="#connections" aria-controls="connections" role="tab" data-toggle="tab">Connections<span class="badge"><%=current_user.connection_requested?.length%> </span></a></li>
-    <li role="presentation"><a href="#lessons" aria-controls="lessons" role="tab" data-toggle="tab">Lessons<span class="badge"><%=current_user.unapproved_lesson_requests.length%></span></a></li>
+    <li role="presentation"><a href="#lessons" aria-controls="lessons" role="tab" data-toggle="tab">Lessons<span class="badge"><%=current_user.pending_appointment_requests.length%></span></a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages<span class="badge"><%=current_user.unread_message_num%></span></a></li>
   </ul>
 
@@ -13,7 +13,7 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="profile"> <%= render "show" %> </div>
     <div role="tabpanel" class="tab-pane" id="skills">
-      <%= render "skills_tab" %>
+      <%= render "users/skills/skills_tab" %>
     </div>
     <div role="tabpanel" class="tab-pane" id="connections">
     <%= render "my_connections" %>  </div>

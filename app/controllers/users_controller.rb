@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     else
       render :new, notice: "failure!"
     end
+
   end
 
   def show
@@ -31,8 +32,13 @@ class UsersController < ApplicationController
   end
 
   def becometeacher
+    binding.pry
     current_user.skill_ids = new_teacher_params[:skill_ids]
-    redirect_to homepage_path, notice: "New Skills Added!"
+    respond_to do |format|
+      format.js {render template: "skills/create.js.erb",
+                 layout: false}
+    end
+    # redirect_to homepage_path, notice: "New Skills Added!"
   end
 
   def calendar
@@ -57,6 +63,15 @@ class UsersController < ApplicationController
       format.js {render template: "users/availability/set_availability.js.erb",
                  layout: false}
     end
+  end
+
+  def current_user_json
+    render json: current_user
+  end
+
+  def teachers_json
+    @teachers = User.all.map{|user| user.search_index_json if user.teacher?}.compact.flatten
+    render json: @teachers
   end
 
   private
