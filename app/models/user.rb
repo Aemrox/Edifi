@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   has_many :out_convos, :foreign_key => :sender_id, class_name: "Conversation"
   has_many :in_convos, :foreign_key => :recipient_id, class_name: "Conversation"
   mount_uploader :attachment, AvatarUploader
-
+  has_many :ratings
+  has_many :comments
   def self.authenticate!(user_name, password)
     user = self.find_by(user_name: user_name)
     user.authenticate(password) if user

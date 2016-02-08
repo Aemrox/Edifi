@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     binding.pry
     current_user.skill_ids = new_teacher_params[:skill_ids]
     respond_to do |format|
+      format.html {@skill=Skill.new; render :teacherize}
       format.js {render template: "skills/create.js.erb",
                  layout: false}
     end

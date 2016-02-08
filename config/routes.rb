@@ -13,14 +13,17 @@ Rails.application.routes.draw do
 
     get 'auth/failure', to: redirect('/')
   get '/users/teacherize', to: 'users#teacherize'
-  get '/users/:id/calendar', to: 'users#calendar'
   get '/userjson', to: 'users#current_user_json'
   get '/teachersjson', to: 'users#teachers_json'
-  post '/users/:id/availability', to: 'users#set_availability'
   get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
+  get '/users/:id/calendar', to: 'users#calendar'
+  post '/users/:id/availability', to: 'users#set_availability'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
+  resources :ratings, only: :update
+    resources :comments, only: [:new, :create, :show, :update]
+
 
   resources :subjects, only: [:new, :create, :index, :show]
 

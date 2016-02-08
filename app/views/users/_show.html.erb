@@ -14,6 +14,11 @@
       <%= render'users/availability/availability_modal'%>
     <% end %>
     <%= render partial: "users/calendar_modal" %>
+    <%= render partial: "comments/teacher_comments" %>
+    <%= render partial: "rating/teacher_rating" %>
+
+
+
   <% end %>
     <%if (logged_in? && @user.id != current_user.id) %>
       <%= render "connections" %>
@@ -22,6 +27,7 @@
 <div class="col-md-1"></div>
 <div class="col-md-4">
   <% if @user.teacher? %>
+  
     <%= render partial: "users/skills/teacher_skills", locals: {teacher: @user} %>
   <%end%>
 </div>
