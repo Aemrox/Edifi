@@ -7,6 +7,8 @@ class ConnectionsController < ApplicationController
     @teacher = User.find(connection_params[:teacher_id])
     @connection = Connection.new(connection_params)
     @connection.save
+    UserMailer.message_email(@teacher).deliver_now
+
     respond_to do |format|
       format.js{}
     end

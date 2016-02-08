@@ -10,4 +10,9 @@ class UserMailer < ApplicationMailer
     @recipient = recipient
     mail(to: @recipient.email, subject: 'You have a new message on Edifi!')
   end
+
+  def connection_email(teacher)
+      @teacher = teacher
+      mail(to: @teacher.email, subject: 'You have a connection request on Edifi!')
+  end
 end
