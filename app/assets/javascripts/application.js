@@ -37,4 +37,6 @@
 //= require pusher
 //= require simplepeer
 //= require hark
+//= require raty.min.js
+
 //= require_tree .
