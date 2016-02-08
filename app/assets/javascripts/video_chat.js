@@ -37,7 +37,7 @@ $(function() {
     var currentUser = {};
 
     $modal.modal('hide');
-    $.getJSON( "../../userjson", function( data ) {
+    $.getJSON( "/userjson", function( data ) {
       currentUser = {
         name: data.user_name,
         id: guid(),
@@ -62,6 +62,7 @@ $(function() {
         }
       });
 
+      //Place channel ID here to modify the pusher channel name
       var channel = pusher.subscribe('presence-chat');
       var peers = {};
 
@@ -74,9 +75,7 @@ $(function() {
           }
         }
       }
-      debugger;  
       channel.bind('pusher:subscription_succeeded', lookForPeers);
-      debugger;
       function gotRemoteVideo(userId, userName, stream) {
         var video = $("<video autoplay data-user-id='" + userId + "'/>");
         video[0].src = window.URL.createObjectURL(stream);

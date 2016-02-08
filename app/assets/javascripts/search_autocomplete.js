@@ -1,13 +1,13 @@
 
 $(function(){
   var teacherSkillIndex = []
-  $.getJSON( "../teachersjson", function( data ) {
+  $.getJSON( "/teachersjson", function( data ) {
     data.forEach(function(elem){
       teacherSkillIndex.push(elem);
     },this)
 
   });
-  $.getJSON( "../skills", function( data ) {
+  $.getJSON( "/skills", function( data ) {
     data.forEach(function(elem){
       teacherSkillIndex.push(elem);
     },this)
@@ -16,7 +16,6 @@ $(function(){
   $('#autocomplete').autocomplete({
      lookup: teacherSkillIndex,
      onSelect: function (suggestion) {
-       debugger;
        window.location.href = suggestion.data
      }
    });
