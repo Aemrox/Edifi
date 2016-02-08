@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
+    get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
+    get 'auth/google', to: 'sessions#omniauthcreate'
 
+    get 'auth/failure', to: redirect('/')
   get '/users/teacherize', to: 'users#teacherize'
   get '/users/:id/calendar', to: 'users#calendar'
   post '/users/:id/availability', to: 'users#set_availability'
@@ -38,7 +41,9 @@ Rails.application.routes.draw do
   post '/lessons/:id/approve', to: 'lessons#approve'
   post '/lessons/:id/reject', to: 'lessons#reject'
   resources :lessons, only: [:create, :show, :update, :delete]
+end
 
+   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -93,4 +98,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+
