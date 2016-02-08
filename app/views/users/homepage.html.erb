@@ -1,12 +1,11 @@
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-4">
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4">
-    <h2 class="cs-heading text-center"><%= current_user.name %></h2>
-    <%= image_tag("profilepic.jpg", :class => "img-circle img-center") %>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <h2 class="text-center cs-heading"><%= current_user.name %></h2>
+      <%= image_tag("profilepic.jpg", :class => "img-circle img-center") %>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8">
+      <%= render "inbox" %>
+    </div>
   </div>
 </div>
-
-<%= render "inbox" %>

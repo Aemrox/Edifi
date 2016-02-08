@@ -1,24 +1,68 @@
-    <section class="hero">
-      <div class="container">
-
+<div id="preloader"><div id="spinner"></div></div>
+<section class="hero">
+  <div class="container">
         <!--Hero Slider-->
-        <div class="row">
-          <div class="hero-slider">
-            <div class="slide first-slide">
-              <div class="col-lg-5 col-md-5 col-sm-5 animated">
-                <h2 style="margin-top:50px;" class="text-light text-left">Connect. Learn. Teach</h2>
-                <p>Coding. Graphic design. Desktop publishing.</p>
-                <p>There's a whole world of hard skills out there waiting for you.  With Edifi, bringing teachers and learners together has never been simpler. </p>
-                <%= link_to "Sign Up", new_user_path, class: "btn btn-primary" %>
-              </div>
-            </div>
+    <div class="row">
+      <div class="hero-slider">
+        <div class="slide first-slide">
+          <div class="col-lg-5 col-md-5 col-sm-5 animated">
+            <br>
+            <br>
+            <h2 style="margin-top:50px;" class="text-light text-left">Connect. Learn. Teach.</h2>
+            <p>Coding. Graphic design. Desktop publishing.</p>
+            <p>There's a whole world of hard skills out there waiting for you.  With Edifi, bringing teachers and learners together has never been simpler. </p>
+            <% if !logged_in? %>
+              <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+              <%= link_to "Browse Subjects", subjects_path, class: "btn btn-primary" %>
+            <% end %>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
           </div>
-        </div><!--Close Hero Slider-->
+        </div>
       </div>
-    </section><!--Close Hero-->
+    </div><!--Close Hero Slider-->
+  </div>
+</section><!--Close Hero-->
 
-<% if !logged_in? %>
-
-  <%= render "users/form" %>
-
-<% end %>
+<section class="page-block" id="gallery">
+      <div class="container">
+        <div class="row page-header">
+          <h2>Explore a Subject</h2>
+          <span>Click to learn more</span>
+        </div>
+        <div class="row">
+          <ul class="gallery">
+            <% @subjects.each do |subject| %>
+              <li>
+                <%=link_to subject do %>
+                  <%= image_tag("subtb.jpg", :class => "img-rounded img-center") %>
+                  <span class="img-caption"><%= subject.name %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+</section>
+<%= render "home/footer" %>
+<!-- sign up modal -->
+<div class="light-skin modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Create an Account</h4>
+      </div>
+      <div class="modal-body">
+        <%= render "users/form" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon-close"></i>Close</button>
+        <button type="button" class="btn btn-success"><i class="icon-checkmark"></i>Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

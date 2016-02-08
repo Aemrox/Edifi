@@ -1,20 +1,25 @@
-<h1> Create a new skill!</h1>
 <div class="skill_form">
-  <%= form_for @skill, remote: true do |f|%>
-    <div class="skill_name">
+  <%= form_for @skill, remote: true, :role => "form" do |f|%>
+    <div class="skill_name form-group">
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :class => "form-control input-sm" %>
     </div>
-    <div class="skill_description">
+    <div class="skill_description form-group">
       <%= f.label :description %>
-      <%= f.text_field :description %>
+      <%= f.text_field :description, :class => "form-control input-sm" %>
     </div>
-    <div class="skill_subject">
-      <%= f.collection_radio_buttons(:subject_id, Subject.all, :id, :name)%>
+    <p class="text-primary">Subject area</p>
+    <div class="skill_subject form-group">
+      <%= f.collection_radio_buttons(:subject_id, Subject.all, :id, :name) do |b| %>
+          <div class="radio custom">
+            <%= b.label do %>
+            <%=b.radio_button + b.text%>
+            <% end %>
+          </div>
+      <% end %>
     </div>
     <%= hidden_field_tag(:original_page, return_to) %>
-
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit :class => 'btn btn-success'  %>
 
   <% end %>
 </div>

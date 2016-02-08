@@ -1,0 +1,15 @@
+<div class="col-md-5">
+  <% if current_user.teacher? %>
+  <h3>Add new skills!</h3>
+  <%= render partial: "users/skills/teacher_skills", locals: {teacher: current_user} %>
+  <% else %>
+  <h3>Sign up as a teacher!</h3>
+  <% end %>
+  <p>What skills can you teach?</p>
+    <%= render partial: "skill_selector", locals: {user: current_user}%>
+</div>
+
+<div class="col-md-7">
+  <h3 class="new_skill_form">Don't see your skill? add one!</h3>
+    <%= render partial: "skills/form", locals: {return_to: @_request.original_url}%>
+</div>

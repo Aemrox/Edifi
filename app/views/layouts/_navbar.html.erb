@@ -1,22 +1,27 @@
 
 <header class="stiky-header">
   <div class="container group">
-    <a class="logo" href="/"><%= image_tag("logo.svg") %></a>
-    <a class="logo-mobile" href="index.html"><%= image_tag("logo.svg") %></a>
-    <nav class="main-navi">
-      <ul>
-        <% if logged_in? %>
-          <%= render "layouts/dropdown" %>
-        <% else %>
-        <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
-        <% end %>
-        <li><%= link_to "Browse subjects", subjects_path %></li>
-        <li> <!--Search Bar Start -->
-          <%= render 'layouts/search' %>
-
-        </li><!--Search Bar End -->
-      </ul>
-    </nav>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="img-center">
+          <a class="logo" href="/"><%= image_tag("logo.svg") %></a>
+          <a class="logo-mobile" href="index.html"><%= image_tag("logo.svg") %></a>
+        </div>
+      </div>
+      <nav class="main-navi">
+        <ul>
+          <% if logged_in? %>
+            <%= render "layouts/dropdown" %>
+          <% else %>
+          <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+          <% end %>
+          <li><%= link_to "Browse subjects", subjects_path %></li>
+          <li>
+            <%= render 'layouts/search' %>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -27,7 +32,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Login here</h4>
+          <h4 class="modal-title">Login Here</h4>
         </div>
         <div class="modal-body">
 

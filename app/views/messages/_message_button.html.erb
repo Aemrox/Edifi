@@ -1,6 +1,7 @@
 <% if !Conversation.between(current_user.id, recipient.id).present? %>
-  <%= link_to "Start a conversation", conversations_path(:controller => "conversations", :action => "create", :conversations => {:sender_id => current_user.id, :recipient_id => recipient.id}), class: "btn btn-primary", :method=> :post %>
+  <%= link_to "Message", conversations_path(:controller => "conversations", :action => "create", :conversations => {:sender_id => current_user.id, :recipient_id => recipient.id}), :method=> :post, class: "btn btn-primary btn-xs" %>
 <% else %>
   <% conversation = Conversation.between(current_user.id, recipient.id).first %>
-  <%= link_to "Messages", conversation_path(conversation), class: "btn btn-primary" %>
+  <%= link_to "Message", conversation_path(conversation), class: "btn btn-primary btn-xs" %>
+
 <% end %>

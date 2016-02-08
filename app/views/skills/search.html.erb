@@ -1,4 +1,11 @@
-<h1>Search Results for <%= @query %>  </h1>
-<ul>
-  <%= render @skills %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Search Results for "<%= @query %>"</h2>
+    </div>
+    <div class="col-md-8">
+      <br>
+      <%= render "skills" %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,15 @@
+<% if @user.errors.any? %>
+<ul>
+  <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+<% end %>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
 <div class="row">
-  <div class="col-lg-4 col-md-4">
-    <h3 class="cs-heading">Create an Account</h3>
+  <div class="col-lg-9 col-md-9">
     <%= form_for @user, :role => "form" do |f| %>
         <div class="form-group">
           <%= f.label :first_name %>

@@ -204,6 +204,8 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-rails (4.5.0.0)
+      railties (>= 3.2, < 5.0)
     formatador (0.2.5)
     fullcalendar-rails (2.6.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
@@ -413,6 +415,7 @@ DEPENDENCIES
   elasticsearch-rails
   figaro
   fog
+  font-awesome-rails
   fullcalendar-rails
   jbuilder (~> 2.0)
   jquery-rails

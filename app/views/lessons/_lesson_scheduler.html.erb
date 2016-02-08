@@ -1,16 +1,17 @@
 <% if logged_in? && @user.id != current_user.id %>
-  <div class="form group">
+  <div class="form-inline" role="form">
+    <h4>Schedule a Lesson</h4>
     <%= form_tag '/lessons/render_options', remote: true  do%>
-      <label for = "lesson_date">Pick a date</label>
-      <input id = "lesson_date", name = "lesson[date]", type="text" data-provide='datepicker' >
-      <%= label_tag(:time, "Pick a time") %>
-      <%= time_select :lesson, :time, {minute_step: 15} %>
-      <%= label_tag(:length, "How long of a lesson?") %>
+      <label for = "lesson_date">Date</label>
+      <input id = "lesson_date", name = "lesson[date]", type="text" data-provide='datepicker', class="form-control" >
+      <%= label_tag(:time, "Time") %>
+      <%= time_select :lesson, :time, {minute_step: 15}, :class => "form-control" %><br><br>
+      <%= label_tag(:length, "Duration") %>
       <%= select_tag(:length, options_for_select([["15 minutes", 15],["30 minutes", 30],["1 Hour", 60],])) %>
       <%= label_tag(:skill, "Which skill would you like to learn?") %>
-      <%= select_tag(:skill, options_for_select(@user.skills.map{|skill| [skill.name, skill.id]})) %>
+      <%= select_tag(:skill, options_for_select(@user.skills.map{|skill| [skill.name, skill.id]})) %><br>
 
-      <%= submit_tag "See Options", class:"btn btn-primary" %>
+      <%= submit_tag "See Options", class:"btn btn-primary btn-xs" %>
     <% end %>
   </div>
 

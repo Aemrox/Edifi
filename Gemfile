@@ -67,6 +67,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry-rails'
   gem 'database_cleaner'
+  gem "font-awesome-rails"
 end
 
 group :development do

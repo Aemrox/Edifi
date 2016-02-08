@@ -1,6 +1,10 @@
-<% if current_user.future_approved(:appointment).length > 0 %>
-<div class="list-group">
-  <h4 class="list-group-item" >Appointments:</h4>
-  <%= render current_user.future_approved(:appointment) %>
+<div class="row">
+  <div class="col-md-9">
+    <% if current_user.future_approved(:appointment).length > 0 %>
+    <div class="list-group">
+      <h4 class="list-group-item" >Appointments:</h4>
+      <%= render current_user.future_approved(:appointment) %>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
