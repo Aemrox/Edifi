@@ -19,8 +19,8 @@ Rails.application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => "gmail.com",
-      :user_name            => "edifi.team@gmail.com",
-      :password             => "flatiron2016",
+      :user_name            => ENV["GMAIL_USERNAME"],
+      :password             => ENV["GMAIL_PASSWORD"],
 
 }
 
