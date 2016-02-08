@@ -21,8 +21,20 @@
               </div>
             <% end %>
           <% else %>
-            <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
-            <%= link_to "#{conversation.sender.name} - #{conversation.messages.last.body.slice(0..49)}...", conversation, type: "button", class: "list-group-item" %>
+            <%= link_to(conversation, type: "button", class: "list-group-item") do %>
+              <div class="row">
+                <div class="col-md-3">
+                  <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                </div>
+                <div class="col-md-9">
+                  <div class="row">
+                    <strong><%= conversation.sender.name %> </strong>
+                  </div>
+                  <div class="row">
+                    <p><%= conversation.messages.last.body.slice(0..49) %>...</p>
+                  </div>
+                </div>
+              </div>
           <% end %>
         <% end %>
       <% end %>
