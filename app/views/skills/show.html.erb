@@ -1,12 +1,22 @@
-<h1><%= @skill.name %></h1>
-<p><%= @skill.description %></p>
-<% if @skill.teachers %>
-  <p>Teachers with this skill:</p>
-  <ul>
-    <% @skill.teachers.each do |teacher| %>
-    <li><%= link_to teacher.user_name, teacher %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are no teachers with this skill yet.</p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2 class="text-center cs-heading"><%= @skill.name %></h2>
+      <%= image_tag("subtb.jpg", :class => "img-circle img-center") %>
+    </div>
+    <div class="col-md-8">
+      <br>
+      <h3><%= @skill.description %></h3>
+      <% if @skill.teachers %>
+        <p>Teachers with this skill:</p>
+        <ul>
+          <% @skill.teachers.each do |teacher| %>
+          <li><%= link_to teacher.user_name, teacher %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>There are no teachers with this skill yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
