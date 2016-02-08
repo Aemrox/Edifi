@@ -140,11 +140,12 @@ class User < ActiveRecord::Base
     user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
     user.user_name = auth_hash['info']['name']
     user.email = auth_hash['info']['email'] || user.email = "softskills@gmail.com"
+    user.attachment = auth_hash['info']['image']
     user.password = "123"
     user.password_digest = "123"
     user.save!
     user
   end
-  
+
 
 end
