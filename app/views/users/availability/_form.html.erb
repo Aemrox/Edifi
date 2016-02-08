@@ -1,20 +1,22 @@
-<%= form_tag "/users/#{@user.id}/availability", remote: true  do%>
-  <div class="form-group">
-    <%= label_tag(:day, "What day of the Week would you like to set?") %>
-    <%= select_tag(:day, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]), class: "form-control") %>
-  </div>
-  <div class="form-group">
-    <%= label_tag(:start_time, "Pick a Start Time") %>
-    <%= time_select :start_time, :time, {minute_step: 15}, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= label_tag(:end_time, "Pick a End Time") %>
-    <%= time_select :end_time, :time, {minute_step: 15}, class: "form-control" %>
-  </div>
+<form class="form-inline" role="form">
+  <%= form_tag "/users/#{@user.id}/availability", remote: true  do%>
+    <div class="form-group">
+      <%= label_tag(:day, "What day of the Week would you like to set?") %>
+      <%= select_tag(:day, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]), class: "form-control") %>
+    </div><br><br>
+    <div class="form-group">
+      <%= label_tag(:start_time, "Pick a Start Time") %>
+      <%= time_select :start_time, :time, {minute_step: 15}, class: "form-control" %>
+    </div><br><br>
+    <div class="form-group">
+      <%= label_tag(:end_time, "Pick an End Time") %>
+      <%= time_select :end_time, :time, {minute_step: 15}, class: "form-control" %>
+    </div><br><br>
 
-  <div class="form-group">
-    <%= label_tag(:remove, "Not available this day") %>
-    <%= check_box_tag :remove, class: "form-control" %>
-  </div>
-  <%= submit_tag "Set Availability", class:"btn btn-primary" %>
-<% end %>
+    <div class="form-group">
+      <%= label_tag(:remove, "Not available this day") %>
+      <%= check_box_tag :remove, class: "form-control" %>
+    </div><br><br>
+    <%= submit_tag "Set Availability", class:"btn btn-primary btn-xs" %>
+  <% end %>
+</form>

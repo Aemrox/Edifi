@@ -1,26 +1,50 @@
-<div>
+<section>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a></li>
-    <li role="presentation"><a href="#connections" aria-controls="connections" role="tab" data-toggle="tab">Connections<span class="badge"><%=current_user.connection_requested?.length%> </span></a></li>
-    <li role="presentation"><a href="#lessons" aria-controls="lessons" role="tab" data-toggle="tab">Lessons<span class="badge"><%=current_user.unapproved_lesson_requests.length%></span></a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages<span class="badge"><%=current_user.unread_message_num%></span></a></li>
-  </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="profile"> <%= render "show" %> </div>
-    <div role="tabpanel" class="tab-pane" id="skills">
-      <%= render "skills_tab" %>
+    <!-- Nav tabs -->
+    <div class="container-fluid">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+          <li><a href="#skills" data-toggle="tab">Skills</a></li>
+          <li><a href="#connections" data-toggle="tab">Connections <span class="badge"><%=current_user.connection_requested?.length%></span></a></li>
+          <li><a href="#lessons" data-toggle="tab">Lessons <span class="badge"><%=current_user.unapproved_lesson_requests.length%></span></a></li>
+          <li><a href="#messages" data-toggle="tab">Messages <span class="badge"><%=current_user.unread_message_num %></span></a></li>
+        </ul>
     </div>
-    <div role="tabpanel" class="tab-pane" id="connections">
-    <%= render "my_connections" %>  </div>
-    <div role="tabpanel" class="tab-pane" id="lessons">
-      <%= render "lessons/lesson_tab" %> </div>
-    <div role="tabpanel" class="tab-pane" id="messages"> <%= render "conversations" %></div>
+
+<!-- <div class="container-fluid">
+  <div class="row">
+    <ul class="nav nav-tabs central">
+      <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
+      <li><a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">Skills</a></li>
+      <li><a href="#connections" data-toggle="tab">Connections <span class="badge"><%=current_user.connection_requested?.length%></span></a></li>
+      <li><a href="#lessons" data-toggle="tab">Lessons <span class="badge"><%=current_user.unapproved_lesson_requests.length%></span></a></li>
+      <li><a href="#messages" data-toggle="tab">Messages <span class="badge"><%=current_user.unread_message_num%></span></a></li>
+    </ul>
+  </div>
+</div> -->
+  <div class="row tab-content">
+
+      <div class="tab-pane fade in active col-lg-12" id="profile">
+        <%= render "show" %>
+      </div>
+      <div class="tab-pane fade col-lg-12" id="skills">
+        <%= render "skills_tab" %>
+      </div>
+      <div class="tab-pane fade col-lg-12" id="connections">
+        <%= render "my_connections" %>
+      </div>
+      <div class="tab-pane fade col-lg-12" id="lessons">
+        <%= render "lessons/lesson_tab" %>
+      </div>
+      <div class="tab-pane fade col-lg-12" id="messages">
+        <%= render "conversations" %>
+      </div>
 
   </div>
 
-</div>
+</section>
+
+ <!--Tabs-->
+

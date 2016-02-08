@@ -1,6 +1,12 @@
 <div class="skills_selector">
   <%= form_for user, url: {:action => 'becometeacher'}, method: :post do |f|%>
-    <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name, { checked: user.skills.map(&:to_param) }  ) %>
-    <%= f.submit "Teach Things!" %>
+    <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name, { checked: user.skills.map(&:to_param) }  ) do |b| %>
+        <div class="checkbox custom">
+          <%= b.label do %>
+          <%=b.check_box + b.text%>
+          <% end %>
+        </div>
+      <% end %>
+    <%= f.submit "Teach Things!", :class => 'btn btn-success' %>
   <% end %>
 </div>

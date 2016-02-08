@@ -1,6 +1,7 @@
+
 <% if @user.teacher? && @user.no_connections_with?(current_user) %>
 
-  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}} %>
+  <%= button_to "Connect", { :controller => "connections",:action => "create", :connections => {:teacher_id => @user.id, :student_id => session[:user_id]}}, {:class => "btn btn-success"} %>
 
 <% elsif @user.teacher? && @user.connected_and_approved?(current_user) %>
 
@@ -8,6 +9,6 @@
 
 <% else %>
 
-  <p><%= "Awaiting connection approval from #{@user.name}."%></p>
+  <p class="text-primary"><%= "Awaiting connection approval from #{@user.name}."%></p>
 
 <% end %>

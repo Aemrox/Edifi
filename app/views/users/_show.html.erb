@@ -1,35 +1,32 @@
-<h1> <%= @user.user_name %> </h1>
-
-<h2> Bio:</h2
-
-<p>
+<div class="col-md-7">
+  <h3> Bio:</h3>
   <% if @user.bio%>
-    <%= @user.bio  %>
+    <p><%= @user.bio %></p>
   <% else %>
-     No Bio :(
+    <p><%= @user.name %> hasn't written a bio yet.</p>
   <% end %>
-</p>
 
- <p class="photo"
-   <td> <%= image_tag @user.attachment.url %> </td>
-</p>
-
-
-
-<% if @user.teacher? %>
-  <%= render partial: "teacher_skills", locals: {teacher: @user} %>
-
-  <% if @user.id == current_user.id%>
-    <%= render'users/availability/availability_modal'%>
+  <% if @user.teacher? %>
+    <div class="availability_render">
+      <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
+    </div>
+    <% if @user.id == current_user.id%>
+      <%= render'users/availability/availability_modal'%>
+    <% end %>
+    <%= render partial: "users/calendar_modal" %>
   <% end %>
-  <div class="availability_render">
-    <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
-  </div>
+    <%if (@user.id != current_user.id) %>
+      <%= render "connections" %>
+    <%end%>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-4">
+  <% if @user.teacher? %>
+    <%= render partial: "teacher_skills", locals: {teacher: @user} %>
+  <%end%>
+</div>
 
-<%= render partial: "users/calendar_modal" %>
 
-<%end%>
 
-<%if (@user.id != current_user.id) %>
-  <%= render "connections" %>
-<%end%>
+
+

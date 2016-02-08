@@ -1,26 +1,37 @@
-<h2>My Teachers</h2>
-<% if current_user.teachers.length > 0 %>
-  <div class="list-group">
-    <h4 class="list-group-item">Teachers:</h2>
-    <% current_user.approved_teachers.each do |teacher| %>
-      <div class="list-group-item"><%= link_to "#{teacher.name}", teacher %> -
-        <%= render :partial => 'messages/message_button', :locals => {:recipient => teacher} %>
+<div class="row">
+  <div class="col-md-6">
+    <h3>My Teachers</h3>
+    <% if current_user.teachers.length > 0 %>
+      <div class="list-group">
+        <h4 class="list-group-item">Teachers:</h4>
+        <% current_user.approved_teachers.each do |teacher| %>
+          <div class="list-group-item">
+            <div class="row">
+              <div class="col-md-4 connection img-center">
+                <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                <%= link_to "#{teacher.name}", teacher, :class => "teacher-list" %><br>
+                <%= render :partial => 'messages/message_button', :locals => {:recipient => teacher} %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-  <% end %>
-</div>
-<% else %>
-  <p>You have no teachers, go <%= link_to "learn", subjects_path %> some stuff!</p>
-<% end %>
-<hr>
-<h2>My Pending Requests to Teachers</h2>
-<% if current_user.unapproved_teachers.length >0 %>
-  <div class="list-group">
-    <% current_user.unapproved_teachers.each do |teacher| %>
-      <div class="list-group-item"><%= link_to "#{teacher.name}", teacher %> -
-        Awaiting Approval
-      </div>
+    <% else %>
+      <p>You haven't connected to any teachers yet. Browse <%= link_to "subjects", subjects_path %> to start learning!</p>
     <% end %>
   </div>
-<% else %>
-    <p>You have no pending requests</p>
-<% end %>
+  <div class="col-md-6">
+    <h3>Your Learning Requests</h3>
+    <% if current_user.unapproved_teachers.length >0 %>
+      <div class="list-group">
+        <% current_user.unapproved_teachers.each do |teacher| %>
+          <div class="list-group-item"><%= link_to "#{teacher.name}", teacher %> -
+            Awaiting Approval
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+        <p>You have no pending requests</p>
+    <% end %>
+  </div>
+</div>
