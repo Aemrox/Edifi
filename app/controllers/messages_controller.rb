@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     @message.save
     @recipient = conversation.recipient
-    UserMailer.message_email(@recipient).deliver_now
+    UserMailer.message_email(@recipient).deliver_later
 
 
     # redirect_to @conversation
