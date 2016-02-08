@@ -13,6 +13,9 @@ class MessagesController < ApplicationController
     @message = conversation.messages.build(message_params)
     @message.user_id = current_user.id
     @message.save
+    @recipient = conversation.recipient
+    UserMailer.message_email(@recipient).deliver_now
+
 
     # redirect_to @conversation
     respond_to do |format|

@@ -3,7 +3,11 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://example.com/login'
     mail(to: @user.email, subject: 'Welcome to Edifi!')
+  end
+
+  def message_email(recipient)
+    @recipient = recipient
+    mail(to: @recipient.email, subject: 'You have a new message on Edifi!')
   end
 end
