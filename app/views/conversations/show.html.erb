@@ -1,20 +1,28 @@
 <div="container">
   <div class="row">
-    <div class="col-md-3"><br><br><%= image_tag("profilepic.jpg", :class => "img-circle img-center", size: "200") %></div>
+    <% if current_user.sender?(@conversation) %>
+      <div class="col-md-3"><br><br><%= image_tag(@conversation.recipient.attachment.url, :class => "img-circle img-center", size: "200") %></div>
+    <% else %>
+      <div class="col-md-3"><br><br><%= image_tag(@conversation.sender.attachment.url, :class => "img-circle img-center", size: "200") %></div>
+    <% end %>
     <div class="col-md-6">
-      <h3>Conversation with <%= @conversation.recipient.name %></h3>
+      <% if current_user.sender?(@conversation) %>
+        <h3>Conversation with <%= @conversation.recipient.name %></h3>
+      <% else %>
+        <h3>Conversation with <%= @conversation.sender.name %></h3>
+      <% end %>
       <div class="panel panel-default conversation">
         <% if @conversation.messages.any? %>
-        <% @conversation.messages.each do |message| %>
-          <div class="panel-heading">
-            <strong><%= message.user.name %> wrote:</strong> <br>
-            <%= message.created_at %>
-          </div>
-          <div class="panel-body">
-            <%= message.body %>
-          </div>
+          <% @conversation.messages.each do |message| %>
+            <div class="panel-heading">
+              <strong><%= message.user.name %> wrote:</strong> <br>
+              <%= message.created_at %>
+            </div>
+            <div class="panel-body">
+              <%= message.body %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
       </div>
 
       <%= form_for [@conversation, Message.new], :remote => true do |f| %>

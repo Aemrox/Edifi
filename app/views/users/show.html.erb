@@ -2,11 +2,7 @@
   <div class="row">
     <div class="col-md-4">
       <h2 class="text-center cs-heading"> <%= @user.user_name %> </h2>
-        <% if @user.attachment.url == nil %>
-          <%= image_tag("defaultprofile.jpg", :class => "img-circle img-center") %>
-        <% else %>
-          <%= image_tag (@user.attachment.url, :class => "img-circle img-center") %>
-        <% end %>
+          <%= image_tag(@user.attachment.url, :class => "img-circle img-center") %>
       <div class="text-center">
       </div>
     </div>
