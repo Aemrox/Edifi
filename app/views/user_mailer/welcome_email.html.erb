@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+<style>
+h1 {text-align:center;}
+p {text-align:center;}
+</style>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4">
+            <h2 class="text-center cs-heading"></h2>
+            <%= image_tag("profilepic.jpg", :class => "img-circle img-center") %>
+            <br>
+            <br>
+            <h1 style="margin-top:50px;" class="text-light text-left">Connect. Learn. Teach.</h1>
+            <h2>Coding. Graphic design. Desktop publishing.</h2>
+            <p>There's a whole world of hard skills out there waiting for you.  With Edifi, bringing teachers and learners together has never been simpler. </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+      </div>
+    </div>
   </head>
+
   <body>
     <h1>Welcome to Edifi, <%= @user.first_name %>!</h1>
     <p>
+      <br>
+      <br>
     You have successfully signed up!<br>
+    <br>
+    <br>
     Your username is: <%= @user.user_name %>.<br>
     </p>
+    <br>
+    <br>
     <p>
       We appreciate your desire to learn all the things.
+      <br>
+      <br>
     </p>
     <p>Thanks for joining and have a great day!</p>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <%= render "home/footer" %>
   </body>
 </html>
