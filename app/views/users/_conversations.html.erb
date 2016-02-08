@@ -8,7 +8,7 @@
             <%= link_to(conversation, type: "button", class: "list-group-item") do %>
               <div class="row">
                 <div class="col-md-3">
-                  <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                  <%= image_tag(conversation.recipient.attachment.url, :class => "img-circle", :size => "70") %>
                 </div>
                 <div class="col-md-9">
                   <div class="row">
@@ -24,7 +24,7 @@
             <%= link_to(conversation, type: "button", class: "list-group-item") do %>
               <div class="row">
                 <div class="col-md-3">
-                  <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                  <%= image_tag(conversation.sender.attachment.url, :class => "img-circle", :size => "70") %>
                 </div>
                 <div class="col-md-9">
                   <div class="row">

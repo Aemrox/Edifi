@@ -8,7 +8,7 @@
           <div class="row">
             <% current_user.approved_students.each do |student| %>
               <div class="col-md-4 connection img-center">
-                <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                <%= image_tag(student.attachment.url, :class => "img-circle", :size => "70") %>
                 <%= link_to "#{student.name}", student %><br>
                 <%= render :partial => 'messages/message_button', :locals => {:recipient => student} %>
               </div>

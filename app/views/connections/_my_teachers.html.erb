@@ -8,7 +8,7 @@
           <div class="list-group-item">
             <div class="row">
               <div class="col-md-4 connection img-center">
-                <%= image_tag("profilepic.jpg", :class => "img-circle", :size => "70") %>
+                <%= image_tag(teacher.attachment.url, :class => "img-circle", :size => "70") %>
                 <%= link_to "#{teacher.name}", teacher, :class => "teacher-list" %><br>
                 <%= render :partial => 'messages/message_button', :locals => {:recipient => teacher} %>
               </div>
