@@ -44,10 +44,7 @@
           <%= f.password_field :password_confirmation, :class => "form-control input-sm" %>
         </div>
         <p class="text-primary">Profile Picture</p>
-        <div class="fileUpload">
-          <i class="icon-images"> Upload</i>
-          <%= f.file_field :attachment, :type => "file", :id => "FileUpload", :class => "upload"  %>
-        </div>
+        <%= f.file_field :attachment, :type => "file", :id => "FileUpload", class: "btn btn-primary"%>
         <div class="form-group">
           <%= f.label :bio %>
           <%= f.text_area :bio, :class => "form-control input-sm" %>
@@ -55,5 +52,3 @@
       <%= f.submit :class => "btn btn-success" %>
     <% end %>
   </div>
-
-
