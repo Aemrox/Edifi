@@ -28,7 +28,7 @@ Rails.application.configure do
       :user_name            => ENV["GMAIL_USERNAME"],
       :password             => ENV["GMAIL_PASSWORD"],
 
-}s 
+} 
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
