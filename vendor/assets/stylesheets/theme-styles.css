@@ -1804,6 +1804,9 @@ img {
 .hero {
     width: 100%;
     background: image-url("bg-art.jpg") center top no-repeat #4dbc84;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: 35px 0 0
 }
 .top-navi a {
@@ -1876,7 +1879,7 @@ img {
     font-size: 1.3em;
     font-weight: 300;
     line-height: 1.5;
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 .hero-slider .logo-image {
     margin-bottom: 45px
