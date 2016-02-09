@@ -1,4 +1,4 @@
-<%= form_for user, url: {:action => 'becometeacher'}, method: :post, remote:true do |f|%>
+<%= form_for user, url: {controller: 'users', action: 'becometeacher'}, method: :post, remote:true do |f|%>
   <%= f.collection_check_boxes(:skill_ids, Skill.all, :id, :name, { checked: user.skills.map(&:to_param) }  ) do |b| %>
       <div class="checkbox custom">
         <%= b.label do %>
