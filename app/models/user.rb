@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
     user.email = auth_hash['info']['email'] || user.email = "softskillsgmail.com"
     user.attachment = auth_hash.info.image
     user.password = "123"
-    user.password_confirmation = "123"
+    user.password_digest = "123"
     puts user
     user.save!
     user
