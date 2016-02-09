@@ -1,9 +1,6 @@
-<div class="list-group-item">
-<h5>  <%=  lesson.title(current_user)%></h5>
-<ul>
-  <li> Starts: <%= lesson.start_time.strftime("%m/%d/%Y, %H:%M") %>,
-       Ends: <%= lesson.end_time.strftime("%m/%d/%Y, %H:%M") %>
-   </li>
-   <%= link_to "See the Lesson", lesson, class: "btn btn-primary" %>
-</ul>
-</div>
+<h5><%=  lesson.title(current_user)%></h5>
+<p>Starts: <%= lesson.start_time.strftime("%m/%d/%Y, %H:%M") %></p>
+<p>Ends: <%= lesson.end_time.strftime("%m/%d/%Y, %H:%M") %></p>
+<%= link_to "See the Lesson", lesson, class: "btn btn-primary btn-xs" %>
+
+

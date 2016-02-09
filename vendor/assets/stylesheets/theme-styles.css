@@ -3030,3 +3030,8 @@ div.line {
 .calSearch {
     margin-top: -30px;
 }
+
+ul li, .appList:before  {
+    display: none;
+    list-style-type: none;
+}

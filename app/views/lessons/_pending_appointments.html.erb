@@ -1,17 +1,19 @@
 <div class="row">
   <div class="col-md-6">
     <h3>My Appointment Requests</h3>
-    <% if current_user.pending_appointment_requests.length >0 %>
-      <% current_user.pending_appointment_requests.each do |appointment| %>
-      <div id="appointment-<%= appointment.id %>">
-        <%= render appointment %>
-        <div class="row container">
-          <%= button_to "Approve!", {controller: "lessons", action: "approve", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-primary btn-xs"%>
-          <%= button_to "Reject", {controller: "lessons", action: "reject", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-primary btn-xs"%>
-        </div>
-      </div>
-      <% end %>
-    <% else %>
+      <% if current_user.pending_appointment_requests.length > 0 %>
+        <ul class="list-group">
+          <% current_user.pending_appointment_requests.each do |appointment| %>
+              <li class="list-group-item appList" id="appointment-<%= appointment.id %>">
+                <%= render appointment %>
+                <div class="row container">
+                  <%= button_to "Approve!", {controller: "lessons", action: "approve", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-success btn-xs"%>
+                  <%= button_to "Reject", {controller: "lessons", action: "reject", method: "POST", id: appointment.id}, remote: true, class: "col-md-1 btn btn-danger btn-xs"%>
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      <% else %>
       <p>You have no pending appointment requests.</p>
     <% end %>
   </div>
