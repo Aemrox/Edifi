@@ -7,7 +7,7 @@
           <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
           <li><a href="#skills" data-toggle="tab">Skills</a></li>
           <li><a href="#connections" data-toggle="tab">Connections <span class="badge"><%=current_user.connection_requested?.length%></span></a></li>
-          <li><a href="#lessons" data-toggle="tab">Lessons <span class="badge"><%=current_user.unapproved_lesson_requests.length%></span></a></li>
+          <li><a href="#lessons" data-toggle="tab">Lessons <span class="badge"><%=current_user.pending_appointment_requests.length%></span></a></li>
           <li><a href="#message_tab" data-toggle="tab">Messages <span class="badge"><%=current_user.unread_message_num %></span></a></li>
         </ul>
     </div>
