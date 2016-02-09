@@ -1,0 +1,8 @@
+debugger;
+
+var connectionRequest = $("#request-<%=@connection.id%>")
+connectionRequest.empty()
+connectionRequest.append("<p>Connection Request from <%=@connection.student.name%> approved!</p>")
+
+$('.student_section').empty()
+$('.student_section').append("<%= j render 'connections/students' %>")

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/users/:id/availability', to: 'users#set_availability'
   get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
+  post 'users/:id/edit', to: 'users#edit'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
 
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
 
 
   resources :skills, only: [:new, :create, :index, :show]
-  resources :connections, only: [:new, :show, :create, :update]
+  resources :connections, only: [:new, :show, :create, :update, :destroy]
   resources :conversations, only: [:new, :show, :create] do
     resources :messages, only: [:new, :create, :index, :show]
   end
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
   resources :lessons, only: [:create, :show, :update, :delete]
 end
 
-   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -96,4 +97,3 @@ end
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-

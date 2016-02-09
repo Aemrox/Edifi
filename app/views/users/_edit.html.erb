@@ -1,0 +1,30 @@
+<div class="col-md-7">
+  <%= form_for @user  do |f|%>
+    <h3> Bio:</h3>
+    <%= f.text_area :bio, rows: 5, cols: 25%><br>
+
+    <%= f.label :attachement, "Upload new profile photo" %>
+    <%= f.file_field :attachment, class: "btn btn-success"%>
+    <%= f.button class: "btn btn-primary btn-xs" do%>
+      <i class="icon-checkmark-circle"></i>Save my profile  <i class="icon-checkmark-circle"></i>
+    <% end %>
+  <%end%>
+  <% if @user.teacher? %>
+    <div class="availability_render">
+      <%= render partial: 'users/availability/display_availability', locals:{availability:@user.display_availability} %>
+    </div>
+    <% if logged_in? && @user.id == current_user.id%>
+      <%= render'users/availability/availability_modal'%>
+    <% end %>
+    <%= render partial: "users/calendar_modal" %>
+  <% end %>
+  <%if (logged_in? && @user.id != current_user.id) %>
+    <%= render "connections" %>
+  <%end%>
+</div>
+  <div class="col-md-1"></div>
+  <div class="col-md-4">
+  <% if @user.teacher? %>
+    <%= render partial: "users/skills/teacher_skills", locals: {teacher: @user} %>
+  <%end%>
+</div>

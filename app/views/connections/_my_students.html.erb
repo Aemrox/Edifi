@@ -1,33 +1,19 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 student_section">
     <h3>My Students</h3>
-    <% if current_user.approved_students.length > 0 %>
-      <div class="list-group">
-      <h4 class="list-group-item">Students:</h2>
-        <div class="list-group-item">
-          <div class="row">
-            <% current_user.approved_students.each do |student| %>
-              <div class="col-md-4 connection img-center">
-                <%= image_tag(student.attachment.url, :class => "img-circle", :size => "70") %>
-                <%= link_to "#{student.name}", student %><br>
-                <%= render :partial => 'messages/message_button', :locals => {:recipient => student} %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% else %>
-    <p>
-      You haven't connected to any students yet.
-    </p>
-    <% end %>
+      <%= render 'connections/students' %>
   </div>
   <div class="col-md-6">
-    <h3>My Teaching Requests</h3>
+    <div class="row">
+      <h3>My Teaching Requests</h3>
+    </div>
     <% if @pending_requests.length >0 %>
       <% @pending_requests.each do |request| %>
-        <%= "You have a connection request from #{request.student.name}" %><br><br>
-        <%= button_to "Approve!", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true}, class: "btn btn-primary btn-xs" %>
+        <div class="row" id="request-<%=request.id%>">
+          <%= "You have a connection request from #{request.student.name}" %><br><br>
+          <%= button_to "Approve!", connection_path(request), :controller => "connections", :action => "update", :method => "patch", :connections => {:approved => true}, class: "btn btn-success btn-xs col-sm-3", remote: true %>
+          <%= button_to "Reject", connection_path(request), :controller => "connections", :action => "destroy", :method => "delete", class: "btn btn-danger btn-xs col-sm-3", remote: true %>
+        </div>
       <% end %>
     <% else %>
     <p>
