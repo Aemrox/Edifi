@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -62,6 +63,7 @@ class UsersController < ApplicationController
   end
 
   def set_availability
+    binding.pry
     @user = User.find(params[:id])
     params[:remove] ? availability = no_availability : availability = param_to_availability
     new_availability = Availability.set_array(@user.display_availability,availability)
