@@ -21,7 +21,11 @@ class SessionsController < ApplicationController
     begin
       puts request.env['omniauth.auth']
       @user = User.from_omniauth(request.env['omniauth.auth'])
+      puts @user
+      pust @user.id
       session[:user_id] = @user.id
+      puts session[:user_id]
+      puts current_user
       flash[:success] = "Welcome, #{@user.name}!"
     rescue
       flash[:warning] = "There was an error while trying to authenticate you..."
