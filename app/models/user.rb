@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  validates_uniqueness_of :email, :user_name
+  validates_uniqueness_of :user_name
   validates_presence_of :email, :user_name
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   has_many :teacher_skills, foreign_key: 'teacher_id'
@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
     puts auth_hash['uid']
     user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
     user.user_name = auth_hash['info']['name']
-    user.email = auth_hash['info']['email'] || user.email = "softskillsgmail.com"
+    user.email = auth_hash['info']['email'] || user.email = "softskills@gmail.com"
     user.attachment = auth_hash.info.image
     user.password = "123"
     user.password_confirmataion = "123"
