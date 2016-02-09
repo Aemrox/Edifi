@@ -17,6 +17,9 @@
 }
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 25rem;
     background-color: #fff;
     font-weight: 400;
     color: #313447;
@@ -3029,9 +3032,4 @@ div.line {
 
 .calSearch {
     margin-top: -30px;
-}
-
-ul li .appList:before  {
-    display: none;
-    list-style-type: none;
 }

@@ -7,20 +7,27 @@
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
 </head>
-<%= render "layouts/navbar" %>
 
-<body class="space-top">
-
-  <div class="notice-error text-center">
-    <% if flash[:notice] %>
-        <%= flash[:notice] %>
-    <% end %>
-    <% if flash[:error] %>
-        <%= flash[:error] %>
-    <% end %>
+<div id="wrapper">
+  <div id="header">
+    <%= render "layouts/navbar" %>
   </div>
+  <body class="space-top">
+  <div id="content">
+    <div class="notice-error text-center">
+      <% if flash[:notice] %>
+          <%= flash[:notice] %>
+      <% end %>
+      <% if flash[:error] %>
+          <%= flash[:error] %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+  </body>
 
-  <%= yield %>
+  <%= render "home/footer" %>
 
-</body>
+
+</div>
 </html>
