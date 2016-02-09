@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
   def approve
     @lesson = Lesson.find(params[:id])
     @lesson.approved = true
-    @lesson.save
+    @lesson.save ? @worked = true : (@worked=false; @lesson.destroy)
     respond_to do |format|
       format.js {}
     end
