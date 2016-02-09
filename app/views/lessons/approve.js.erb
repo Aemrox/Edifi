@@ -1,4 +1,11 @@
-$('#appointment-<%=@lesson.id%>').empty()
-$('#appointment-<%=@lesson.id%>').append("<p>Lesson approved! </p>")
-$('#my_appointments').empty()
-$('#my_appointments').append("<%= j render 'lessons/my_appointments' %>")
+<% if @worked%>
+  $('#appointment-<%=@lesson.id%>').empty()
+  $('#appointment-<%=@lesson.id%>').append("<p>Lesson approved! </p>")
+  $('#my_appointments').empty()
+  $('#my_appointments').append("<%= j render 'lessons/my_appointments' %>")
+<%else%>
+  $('#appointment-<%=@lesson.id%>').empty()
+  $('#appointment-<%=@lesson.id%>').append("<p>Lesson Conflicts with Exisiting Schedule </p>")
+  $('#my_appointments').empty()
+  $('#my_appointments').append("<%= j render 'lessons/my_appointments' %>")
+<%end%>
