@@ -8,51 +8,50 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+ <br>
+   <%= link_to "/auth/facebook", id: "sign_in", :class => "btn btn-primary btn-sm" do %>
+    <i class="icon-facebook2"></i> Sign in with Facebook
+   <% end %>
+  <%= link_to '/auth/twitter', id: "sign_in", :class => "btn btn-primary btn-sm" do %>
+    <i class="icon-twitter2"></i> Sign in with Twitter
+  <% end %>
+  <br>
 <div class="row">
   <div class="col-lg-9 col-md-9">
     <%= form_for @user, :role => "form" do |f| %>
         <div class="form-group">
           <%= f.label :first_name %>
-          <%= f.text_field :first_name, :class => "form-control" %>
+          <%= f.text_field :first_name, :class => "form-control input-sm" %>
         </div>
         <div class="form-group">
           <%= f.label :last_name %>
-          <%= f.text_field :last_name, :class => "form-control" %>
+          <%= f.text_field :last_name, :class => "form-control input-sm" %>
         </div>
         <div class="form-group">
           <%= f.label :user_name %>
-          <%= f.text_field :user_name, :class => "form-control" %>
+          <%= f.text_field :user_name, :class => "form-control input-sm" %>
         </div>
         <div class="form-group">
           <%= f.label :email %>
-          <%= f.text_field :email, :class => "form-control" %>
+          <%= f.text_field :email, :class => "form-control input-sm" %>
         </div>
         <div class="form-group">
           <%= f.label :password %>
-          <%= f.password_field :password,:class => "form-control" %>
+          <%= f.password_field :password,:class => "form-control input-sm" %>
         </div>
         <div class="form-group">
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, :class => "form-control" %>
+          <%= f.password_field :password_confirmation, :class => "form-control input-sm" %>
         </div>
-        <div class="form-group">
-          <%= f.label :attachment %>
-          <%= f.file_field :attachment %>
+        <p class="text-primary">Profile Picture</p>
+        <div class="fileUpload">
+          <i class="icon-images"> Upload</i>
+          <%= f.file_field :attachment, :type => "file", :id => "FileUpload", :class => "upload"  %>
         </div>
         <div class="form-group">
           <%= f.label :bio %>
-          <%= f.text_area :bio, :class => "form-control" %>
+          <%= f.text_area :bio, :class => "form-control input-sm" %>
         </div>
-      <%= f.submit :class => "btn btn-primary" %>
+      <%= f.submit :class => "btn btn-success" %>
     <% end %>
   </div>
-
- <br> 
-   <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", :class => "btn btn-primary" %> 
-   <br>
-  <%= link_to 'Sign in with Twitter', '/auth/twitter', id: "sign_in", :class => "btn btn-primary" %>
-  <br>
-<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", :class => "btn btn-primary" %>
-<br>
-<%= link_to "Sign in with Linkedin", "/auth/linkedin", id: "sign_in", :class => "btn btn-primary" %>
-</div>

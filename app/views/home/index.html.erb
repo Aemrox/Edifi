@@ -6,20 +6,15 @@
       <div class="hero-slider">
         <div class="slide first-slide">
           <div class="col-lg-5 col-md-5 col-sm-5 animated">
-            <br>
-            <br>
+            <br><br>
             <h2 style="margin-top:50px;" class="text-light text-left">Connect. Learn. Teach.</h2>
             <p>Coding. Graphic design. Desktop publishing.</p>
             <p>There's a whole world of hard skills out there waiting for you.  With Edifi, bringing teachers and learners together has never been simpler. </p>
             <% if !logged_in? %>
               <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
-              <%= link_to "Browse Subjects", subjects_path, class: "btn btn-primary" %>
             <% end %>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+              <%= link_to "Browse Subjects", subjects_path, class: "btn btn-primary" %>
+            <br><br><br><br><br>
           </div>
         </div>
       </div>
@@ -58,10 +53,6 @@
       </div>
       <div class="modal-body">
         <%= render "users/form" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon-close"></i>Close</button>
-        <button type="button" class="btn btn-success"><i class="icon-checkmark"></i>Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
