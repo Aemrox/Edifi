@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post '/users/:id/availability', to: 'users#set_availability'
   get '/rerender/availability', to: 'users#rerender_availability'
   post '/users/becometeacher', to: 'users#becometeacher'
+  post 'users/:id/edit', to: 'users#edit'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
 

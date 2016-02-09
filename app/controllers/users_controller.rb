@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:update]
 
   def new
     @user= User.new
@@ -24,12 +25,26 @@ class UsersController < ApplicationController
     @user = current_user
     @skill = Skill.new
     @pending_requests = current_user.connection_requested?
-
   end
 
   def teacherize
     @skill = Skill.new
     @user = current_user
+  end
+
+  def edit
+    @user = current_user
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_update_params)
+    @skill = Skill.new
+    @pending_requests = current_user.connection_requested?
+    render :homepage
   end
 
   def becometeacher
@@ -78,6 +93,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:user_name, :email, :attachment, :password, :password_confirmation, :bio, :first_name, :last_name)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:bio, :attachment)
   end
 
   def new_teacher_params
