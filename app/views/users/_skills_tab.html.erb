@@ -1,12 +1,16 @@
 <div class="col-md-5">
   <% if current_user.teacher? %>
   <h3>Add new skills!</h3>
-  <%= render partial: "users/skills/teacher_skills", locals: {teacher: current_user} %>
+  <div id="user_skills">
+    <%= render partial: "users/skills/teacher_skills", locals: {teacher: current_user} %>
+  </div>
   <% else %>
   <h3>Sign up as a teacher!</h3>
   <% end %>
   <p>What skills can you teach?</p>
-    <%= render partial: "skill_selector", locals: {user: current_user}%>
+  <div id="skills_selector">
+    <%= render partial: "users/skills/skill_selector", locals: {user: current_user}%>
+  </div>
 </div>
 
 <div class="col-md-7">
