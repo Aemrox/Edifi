@@ -4,12 +4,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = current_user.comments.create(comment_params)
-    Comment.reindex if comment.save
-    respond_to do |format|
-      format.js{}
+    @comment = current_user.comments.create(comment_params)
+    @comment.save
+     respond_to do |format|
+      format.js { }
     end
-  end
+   end
 
   def index
     @comments = Comment.all

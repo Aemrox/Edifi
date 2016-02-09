@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   ##Student/Teacher/Connection Methods
 
   def teacher?
+
     !self.skills.empty?
   end
 
@@ -148,6 +149,12 @@ class User < ActiveRecord::Base
     user.save!
     user
   end
-  
 
+  def total_rating
+  reviews = self.ratings
+  review_sum = reviews.inject(0) { |sum, review| sum += review.rating }
+  avg_rating = (review_sum / reviews.count).to_i unless review_sum == 0
+  avg_rating
+  end
+   
 end

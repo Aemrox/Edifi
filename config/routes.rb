@@ -21,9 +21,8 @@ Rails.application.routes.draw do
   post '/users/:id/availability', to: 'users#set_availability'
   resources :users, only: [:new, :create, :show, :update]
   get '/homepage', to: 'users#homepage'
-  resources :ratings, only: :update
     resources :comments, only: [:new, :create, :show, :update]
-
+      resources :ratings, only: [:new,:create, :show, :update]
 
   resources :subjects, only: [:new, :create, :index, :show]
 

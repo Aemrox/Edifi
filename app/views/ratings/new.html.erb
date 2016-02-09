@@ -1,0 +1,6 @@
+<p> Please input a rating of the user <p>
+<%= form_for @rating do |f| %>
+  <%= f.label :score %>
+  <%= f.text_field :score %>
+  <%= f.submit %>
+  <% end %>

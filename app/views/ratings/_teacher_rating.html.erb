@@ -1,0 +1,5 @@
+<h3>Rating:</h3>
+<ul>
+  <%= render @user.ratings %>
+  <p> <%= link_to "Add a rating",ratings_path(:controller => "ratings", :action => "create")%> </p>
+</ul>
