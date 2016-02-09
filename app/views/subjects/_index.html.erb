@@ -1,0 +1,15 @@
+<div class="row">
+  <ul class="gallery">
+    <% x = 1 %>
+    <% @subjects.each do |subject| %>
+      <li>
+        <%=link_to subject do %>
+          <%= image_tag("sub#{x}.jpg", :class => "img-rounded img-center") %>
+          <span class="img-caption"><%= subject.name %></span>
+          <% x+= 1 %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

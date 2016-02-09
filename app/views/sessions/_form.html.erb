@@ -1,13 +1,19 @@
+<%= link_to "/auth/facebook", id: "sign_in", :class => "btn btn-primary btn-sm" do %>
+  <i class="icon-facebook2"></i> Sign in with Facebook
+ <% end %>
+<%= link_to '/auth/twitter', id: "sign_in", :class => "btn btn-primary btn-sm" do %>
+  <i class="icon-twitter2"></i> Sign in with Twitter
+<% end %>
 <%= form_tag login_path, :id => "form-validation", :role => "form" do %>
   <div class="form-group">
     <%= label_tag :user_name %>
-    <%= text_field_tag :user_name, "", placeholder: 'User Name', :class => "form-control", :id => "name3" %>
+    <%= text_field_tag :user_name, "", placeholder: 'User Name', :class => "form-control input-sm", :id => "name3" %>
   </div>
 
   <div class="form-group">
     <%= label_tag :password %>
-    <%= password_field_tag :password, "", placeholder: 'Password', :class => "form-control", :id => "email3" %>
+    <%= password_field_tag :password, "", placeholder: 'Password', :class => "form-control input-sm", :id => "email3" %>
   </div>
 
-  <%= submit_tag "Log In", :class => "btn btn-primary" %>
+  <%= submit_tag "Log In", :class => "btn btn-primary btn-xs" %>
 <% end %>
