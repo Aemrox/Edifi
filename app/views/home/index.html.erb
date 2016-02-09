@@ -21,26 +21,14 @@
     </div><!--Close Hero Slider-->
   </div>
 </section><!--Close Hero-->
-
 <section class="page-block" id="gallery">
-      <div class="container">
-        <div class="row page-header">
-          <h2>Explore a Subject</h2>
-          <span>Click to learn more</span>
-        </div>
-        <div class="row">
-          <ul class="gallery">
-            <% @subjects.each do |subject| %>
-              <li>
-                <%=link_to subject do %>
-                  <%= image_tag("subtb.jpg", :class => "img-rounded img-center") %>
-                  <span class="img-caption"><%= subject.name %></span>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
+  <div class="container">
+    <div class="row page-header">
+      <h2>Browse Subjects</h2>
+      <span>Click to learn more</span>
+    </div>
+    <%= render "subjects/index" %>
+  </div>
 </section>
 <%= render "home/footer" %>
 <!-- sign up modal -->
