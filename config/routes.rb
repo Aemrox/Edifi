@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
     get 'auth/:provider/callback', to: 'sessions#omniauthcreate'
-    get 'auth/google', to: 'sessions#omniauthcreate'
-
     get 'auth/failure', to: redirect('/')
   get '/users/teacherize', to: 'users#teacherize'
   get '/users/:id/calendar', to: 'users#calendar'
