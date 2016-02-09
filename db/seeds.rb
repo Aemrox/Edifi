@@ -18,7 +18,7 @@ puts "User 1 confirmed" if adam.save
 madeleine = User.new(user_name: "Madeleine", email: "madeleine@rose.com",
   password: "123", password_confirmation: "123")
 puts "User 2 confirmed" if madeleine.save
-ruchi = User.new(user_name: "Ruchi", email: "Ruchi@Ramanani.com",
+ruchi = User.new(user_name: "Ruchi", email: "madeleine.clark@flatironschool.com",
   password: "123", password_confirmation: "123")
 puts "User 3 confirmed" if ruchi.save
 andrew = User.new(user_name: "Andrew", email: "Andrew@STEWART.com",
