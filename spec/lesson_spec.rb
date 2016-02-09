@@ -32,7 +32,6 @@ describe Lesson do
     it "student is aware of it's lessons" do
       @lesson.save
       @adam.save
-      # binding.pry
       expect(@adam.lessons).to include(@lesson)
     end
 

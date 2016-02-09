@@ -18,7 +18,6 @@ class ConnectionsController < ApplicationController
   end
 
   def update
-    binding.pry
     @connection = Connection.find(params[:id])
     @connection.approved = true
     if @connection.save && @connection.student.teacher?
@@ -33,7 +32,6 @@ class ConnectionsController < ApplicationController
     @connection = Connection.find(params[:id])
     @id = @connection.id
     @connection.destroy
-    binding.pry
     respond_to do |format|
       format.js{}
     end
