@@ -315,7 +315,7 @@ h6 {
 }
 p {
     font-size: 1em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.7
 }
 p.big {
@@ -3029,4 +3029,9 @@ div.line {
 
 .calSearch {
     margin-top: -30px;
+}
+
+ul li, .appList:before  {
+    display: none;
+    list-style-type: none;
 }

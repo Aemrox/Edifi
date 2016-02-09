@@ -40,7 +40,6 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @student = @lesson.connection.student
     Lesson.destroy(params[:id])
-    # binding.pry
     respond_to do |format|
       format.js
     end
@@ -52,7 +51,6 @@ class LessonsController < ApplicationController
 
   private
   def pull_user_id_from_url
-    # binding.pry
     url = @_request.env["HTTP_REFERER"]
     url.match(/users\/(\d+)\/?/)[1]
   end

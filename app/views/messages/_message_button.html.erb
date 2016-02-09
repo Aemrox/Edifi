@@ -3,5 +3,4 @@
 <% else %>
   <% conversation = Conversation.between(current_user.id, recipient.id).first %>
   <%= link_to "Message", conversation_path(conversation), class: "btn btn-primary btn-xs" %>
-
 <% end %>
